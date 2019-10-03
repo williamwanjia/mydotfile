@@ -171,16 +171,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 5 px or 5 ppt
+        bindsym $down       resize grow height 5 px or 5 ppt
+        bindsym $up         resize shrink height 5 px or 5 ppt
+        bindsym $right      resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 5 px or 5 ppt
+        bindsym Down        resize grow height 5 px or 5 ppt
+        bindsym Up          resize shrink height 5 px or 5 ppt
+        bindsym Right       resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -214,25 +214,25 @@ bindsym control+shift+d exec xrandr --output VGA-1 --auto
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         mode dock 
-#         hidden_state hide
-#         modifier $mod
-#         status_command i3status
-#         tray_output primary
-#         font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#         font pango:DejaVu Sans Mono 10
-# }
-
-
-
-
 bar {
-	font pango:Inconsolata 10
-	# position top
-	tray_output none
-	status_command /home/jiawan/repos/bumblebee-status/bumblebee-status -m indicator apt nic disk:root cpu memory battery pasink pasource date time -p root.path=/ time.format="%H:%M" date.format="%a, %d/%m/%Y" -t solarized-powerline
+        mode dock 
+        hidden_state hide
+        modifier $mod
+        status_command i3status
+        tray_output primary
+        font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+        font pango:DejaVu Sans Mono 10
 }
+
+
+
+
+# bar {
+# 	font pango:Inconsolata 10
+# 	# position top
+# 	tray_output none
+# 	status_command /home/jiawan/repos/bumblebee-status/bumblebee-status -m indicator apt nic disk:root cpu memory battery pasink pasource date time -p root.path=/ time.format="%H:%M" date.format="%a, %d/%m/%Y" -t solarized-powerline
+# }
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
@@ -255,6 +255,8 @@ exec fcitx-autostart
 exec --no-startup-id nm-applet
 
 exec --no-startup-id volumeicon
+
+# exec --no-startup-id gnome-settings-daemon
 
 exec $term -T dropdown_term 
 

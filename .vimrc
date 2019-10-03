@@ -65,6 +65,9 @@ Plug 'https://github.com/w0rp/ale'
 "rsT preview
 Plug 'https://github.com/gu-fan/InstantRst'
 
+"Tagbar for code outline
+Plug 'https://github.com/majutsushi/tagbar'
+
 " " Initialize plugin system
 call plug#end()
 " END of Plugin setting---------------------------------------------|
@@ -284,7 +287,6 @@ if (has("termguicolors"))
 endif
 
 
-
 " ALE 
 " Only check while saving
 let g:ale_lint_on_text_changed = 'never'
@@ -301,3 +303,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 
 let g:instant_rst_browser = 'google-chrome'
+
+nmap <F8> :TagbarToggle<CR>
+
+set foldmethod=indent

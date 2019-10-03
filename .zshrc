@@ -131,3 +131,12 @@ neofetch
 #
 
 # VIRTUAL_ENV_DISABLE_PROMPT='1'
+
+# for ROS
+# source /opt/ros/kinetic/setup.zsh
+# source $HOME/catkin_ws/devel/setup.zsh
+
+export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo
+
+
+
