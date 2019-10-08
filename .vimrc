@@ -36,6 +36,9 @@ call plug#begin('~/.vim/plugged')
 " Plug '~/my-prototype-plugin'
 "
 
+" Auto commenter 
+Plug 'https://github.com/scrooloose/nerdcommenter'
+
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'https://github.com/itchyny/lightline.vim'
 
@@ -46,6 +49,8 @@ Plug 'https://github.com/gu-fan/riv.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" syntax highlight
+Plug 'https://github.com/sheerun/vim-polyglot'
 
 " for python
 Plug 'https://github.com/Valloric/YouCompleteMe'
@@ -53,11 +58,13 @@ Plug 'https://github.com/Valloric/YouCompleteMe'
 " tree
 Plug 'https://github.com/scrooloose/nerdtree'
 
-" gruvbox
-Plug 'morhetz/gruvbox'
-
 " Color theme
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'https://github.com/lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+Plug 'https://github.com/dracula/vim'
+
+Plug 'https://github.com/fneu/breezy'
 
 " Code check
 Plug 'https://github.com/w0rp/ale'
@@ -230,16 +237,14 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-
 map <S-h> :tabprevious<CR>
 map <S-l> :tabnext<CR>
-
-
 
 map <F4> :set spell<CR> :syntax spell toplevel<CR>
 map <F5> :set nospell<CR>
 
-"when your cursor moves over a parenthesis-like character, the matching one will be highlighted as well.
+" when your cursor moves over a parenthesis-like character, the matching one
+" will be highlighted as well.
 set showmatch
 
 set spelllang=en_us
@@ -260,31 +265,19 @@ set cursorline
 
 syntax spell toplevel
 
-"Color
+
+
+" Color
 set background=dark
 " Italics for my favorite color scheme
 let g:palenight_terminal_italics=1
-" colorscheme palenight
+colorscheme gruvbox
 
 let g:gruvbox_italic=1
+"
+" colorscheme palenight
 
-
-colorscheme palenight
-
-
-
-
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors " if you want to run vim in a terminal
 
 
 " ALE 
@@ -307,3 +300,31 @@ let g:instant_rst_browser = 'google-chrome'
 nmap <F8> :TagbarToggle<CR>
 
 set foldmethod=indent
+
+" Setting for NERD Commenter --------------------------------------------\
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following
+" code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a
+" region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented
+" or not 
+let g:NERDToggleCheckAllLines = 1
+
+" END of setting for NERD -----------------------------------------------/ 
+
+" Set spell check highlight
+:hi SpellBad cterm=underline ctermfg=red
+
