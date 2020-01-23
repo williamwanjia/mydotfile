@@ -126,7 +126,7 @@ eval `dircolors ~/.dir_colors/dircolors`
 
 alias ll='ls -alh'
 
-neofetch
+# neofetch
 # source ~/.purepower
 #
 
