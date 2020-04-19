@@ -36,6 +36,24 @@ call plug#begin('~/.vim/plugged')
 " Plug '~/my-prototype-plugin'
 "
 
+" For braces
+Plug 'frazrepo/vim-rainbow'
+
+" VimWIKI
+Plug 'https://github.com/vimwiki/vimwiki'
+
+" For git branch information
+Plug 'https://github.com/tpope/vim-fugitive'
+
+" Use LF to open file
+Plug 'ptzz/lf.vim'
+
+" File explorer 
+Plug 'https://github.com/preservim/nerdtree'
+
+" Use LF in pop-up window (not working)
+Plug 'https://github.com/thezeroalpha/vim-lf'
+
 " Auto commenter 
 Plug 'https://github.com/scrooloose/nerdcommenter'
 
@@ -55,8 +73,6 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 " for python
 Plug 'https://github.com/Valloric/YouCompleteMe'
 
-" tree
-Plug 'https://github.com/scrooloose/nerdtree'
 
 " Color theme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -235,7 +251,7 @@ map Y y$
  
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap cl :nohl<CR><C-L>
 
 map <S-h> :tabprevious<CR>
 map <S-l> :tabnext<CR>
@@ -252,20 +268,37 @@ set spelllang=en_us
 
 " Plugins configuration---------------------------------------------|
 
+let g:rainbow_active = 1
+
+" VimWIKI
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 " lightline
+function! CountBuffer()
+    return len(getbufinfo({'buflisted':1}))
+endfunction
+
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste', 'Nbuf' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'Nbuf': 'CountBuffer'
+      \ },
       \ }
 
-" autocmd vimenter * NERDTree
+
+autocmd vimenter * NERDTree
 
 set spellfile=~/.vim/spell/en.utf-8.add
 set cursorline
 
-
 syntax spell toplevel
-
-
 
 " Color
 set background=dark
@@ -327,4 +360,43 @@ let g:NERDToggleCheckAllLines = 1
 
 " Set spell check highlight
 :hi SpellBad cterm=underline ctermfg=red
+
+" setting for column wide
+set colorcolumn=+1
+
+set textwidth=79
+" set formatoptions+=a
+"
+"
+
+nmap <S-t> <Plug>LfEdit
+
+
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+" augroup END
+
+nmap gb :ls<cr>:b<space>
+nmap gn :bn<cr>
+nmap gp :bn<cr>
+
+nmap Bd :bn<cr>:bd #<cr>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+let mapleader = ","
+
+nmap <Leader>ll :set tw=79<cr>
+nmap <Leader>ls :set tw=72<cr>
 
