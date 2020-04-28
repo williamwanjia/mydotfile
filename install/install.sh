@@ -2,7 +2,10 @@ sudo apt-get update
  
 sudo apt-get upgrade -y
  
-sudo apt-get install -y ubuntu-restricted-extras smplayer conky-all vim-gnome disper gedit vim terminator dolphin default-jre fcitx gcc g++ fcitx-googlepinyin  pcmanfm autojump lua5.3 
+sudo apt-get install -y ubuntu-restricted-extras smplayer conky-all \
+    vim-gnome disper gedit vim terminator dolphin default-jre fcitx \
+    gcc g++ fcitx-googlepinyin  pcmanfm autojump lua5.3 make \
+    perl
   
 sudo apt-get upgrade -y
 
