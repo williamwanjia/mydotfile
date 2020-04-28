@@ -1,0 +1,36 @@
+
+order += "weather_owm"
+# order += "apt_updates"
+order += "netdata"
+order += "sysdata"
+order += "time"
+
+# display per cpu histogram
+sysdata {
+    cpus = []                # avg + all CPUs
+}
+
+time {
+    format = ": %a %d %b : %H⦂%M"
+    on_click 1 = "reload"
+    on_click 2 = "exec zenity --calendar"
+}
+
+# apt_updates {
+#
+# }
+
+netdata {
+    nic = 'enp0s3'
+    format = '{nic} [\?color=down Spd(Kb): {down}↓ {up}↑] [\?color=total T(Mb): {download}↓ {upload}↑]'
+}
+
+# set a city
+weather_owm {
+    api_key = '7d6dcb7250548b169c47397cdf78030a'
+    city = 'Leuven'
+    unit_temperature = 'C'
+    format_forecast = '{temperature}'
+    format = '{city} {temperature}[{rain}]{icon} {forecast}'
+    # format_forecast = '{max}-{min}'
+}
