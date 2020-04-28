@@ -15,7 +15,7 @@
 for_window [class="^.*"] border pixel 0
 gaps inner 8 
 
-set $term --no-startup-id terminator
+set $term --no-startup-id gnome-terminal --hide-menubar
 
 # Mod1=Alt 
 set $mod Mod1
@@ -34,7 +34,7 @@ for_window [title="dropdown_dropdowncalc"] border pixel 2
 for_window [title="dropdown_*"] move position center
 
 
-for_window [title="Figure*"] floating enableA
+for_window [title="Figure*"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -63,7 +63,8 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal --hide-menubar
 
 # kill focused window
 bindsym $mod+Shift+q [con_id="__focused__" title="^(?!dropdown_).*$"] kill
@@ -193,11 +194,12 @@ bindsym $mod+r mode "resize"
 mode "launcher" {
     bindsym f exec $term -e ranger 
     bindsym g exec google-chrome
+    bindsym w exec firefox
     bindsym t exec typora 
     bindsym e exec pcmanfm 
     bindsym m exec $term -e cmus 
-    bindsym x exec xmaple
-    # bindsym p exec "terminator -e source /home/jiawan/apps/pv3venv/bin/activate"
+    # bindsym x exec xmaple
+    bindsym p exec "terminator -e source /home/jiawan/initROS.zsh"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -218,14 +220,21 @@ bar {
         mode dock 
         hidden_state hide
         modifier $mod
-        status_command i3status
+        status_command py3status
         tray_output primary
         font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-        font pango:DejaVu Sans Mono 10
+        font pango:DejaVu Sans Mono 12
 }
 
-
-
+# bar {
+        # mode dock
+        # hidden_state hide
+        # modifier $mod
+        # status_command i3status
+        # tray_output primary
+        # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+        # font pango:DejaVu Sans Mono 10
+# }
 
 # bar {
 # 	font pango:Inconsolata 10
@@ -256,9 +265,11 @@ exec --no-startup-id nm-applet
 
 exec --no-startup-id volumeicon
 
+exec --no-startup-id xcompmgr
+
 # exec --no-startup-id gnome-settings-daemon
 
-exec $term -T dropdown_term 
+exec xfce4-terminal -T dropdown_term 
 
 
 bindsym $mod+u [title="dropdown_*"] scratchpad show; [title="dropdown_*"] move position center

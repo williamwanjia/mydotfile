@@ -36,6 +36,8 @@ call plug#begin('~/.vim/plugged')
 " Plug '~/my-prototype-plugin'
 "
 
+
+
 " For braces
 Plug 'frazrepo/vim-rainbow'
 
@@ -43,7 +45,7 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'https://github.com/vimwiki/vimwiki'
 
 " For git branch information
-Plug 'https://github.com/tpope/vim-fugitive'
+" Plug 'https://github.com/tpope/vim-fugitive'
 
 " Use LF to open file
 Plug 'ptzz/lf.vim'
@@ -52,7 +54,7 @@ Plug 'ptzz/lf.vim'
 Plug 'https://github.com/preservim/nerdtree'
 
 " Use LF in pop-up window (not working)
-Plug 'https://github.com/thezeroalpha/vim-lf'
+" Plug 'https://github.com/thezeroalpha/vim-lf'
 
 " Auto commenter 
 Plug 'https://github.com/scrooloose/nerdcommenter'
@@ -71,8 +73,10 @@ Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/sheerun/vim-polyglot'
 
 " for python
-Plug 'https://github.com/Valloric/YouCompleteMe'
-
+" Plug 'https://github.com/Valloric/YouCompleteMe'
+" In 2020-04, YouCompleteMe became very slow, so tried this one
+" Still slow
+" Plug 'davidhalter/jedi-vim'
 
 " Color theme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -214,7 +218,8 @@ set mouse=a
 set cmdheight=2
  
 " Display line numbers on the left
-set number
+" Using hybrid mode
+set number relativenumber
  
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -284,16 +289,16 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'Nbuf' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
+      "\   'gitbranch': 'FugitiveHead',
       \   'Nbuf': 'CountBuffer'
       \ },
       \ }
 
 
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 set spellfile=~/.vim/spell/en.utf-8.add
 set cursorline
@@ -319,6 +324,12 @@ let g:ale_lint_on_text_changed = 'never'
 " Not check when opening a file 
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {'python': ['pycodestyle']}
+let g:ale_sign_column_always = 1
+
+" This seems not working (worse)
+" Disable auto-detection of virtualenvironments
+" let g:ale_virtualenv_dir_names = []
+" Environment variable ${VIRTUAL_ENV} is always used
 
 let g:gruvbox_italicize_comments=1
 
@@ -331,6 +342,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:instant_rst_browser = 'google-chrome'
 
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_width = 30
 
 set foldmethod=indent
 
@@ -369,9 +382,6 @@ set textwidth=79
 "
 "
 
-nmap <S-t> <Plug>LfEdit
-
-
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -399,4 +409,11 @@ let mapleader = ","
 
 nmap <Leader>ll :set tw=79<cr>
 nmap <Leader>ls :set tw=72<cr>
+
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://sunaku.github.io/vim-256color-bce.html
+    set t_ut=
+endif
 
