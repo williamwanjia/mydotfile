@@ -48,7 +48,10 @@ Plug 'https://github.com/vimwiki/vimwiki'
 " Plug 'https://github.com/tpope/vim-fugitive'
 
 " Use LF to open file
-Plug 'ptzz/lf.vim'
+" Plug 'ptzz/lf.vim'
+
+" Use ranger to open file
+Plug 'francoiscabrol/ranger.vim'
 
 " File explorer 
 Plug 'https://github.com/preservim/nerdtree'
@@ -277,7 +280,7 @@ let g:rainbow_active = 1
 
 " VimWIKI
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/myrepos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " lightline
@@ -292,7 +295,7 @@ let g:lightline = {
       \             [ 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      "\   'gitbranch': 'FugitiveHead',
+      \   'gitbranch': 'FugitiveHead',
       \   'Nbuf': 'CountBuffer'
       \ },
       \ }
