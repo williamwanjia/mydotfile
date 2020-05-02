@@ -92,6 +92,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# For git
+alias gitlog='git log --graph --pretty --oneline'
+alias gitco='git checkout'
+
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -115,24 +121,23 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source /opt/ros/kinetic/setup.bash
 
+# The following are added by Jia Wan
 
+# to use autojump
 . /usr/share/autojump/autojump.sh
 
-# add this to enable the vim lightline plugins
-export TERM=xterm-256color
-# export TERM=screen-256color
-
-if [ "$COLORTERM" == "xfce4-terminal" ] ; then
-    export TERM=xterm-256color
-fi
-
-
-export PATH=/home/jiawan/apps/pv2venv/bin:/home/jiawan/bin:/home/jiawan/.local/bin:/opt/ros/kinetic/bin:/home/jiawan/bin:/home/jiawan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jiawan/.local/bin
-
+# To use OASE toolbox
 export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo
 
+# Trim ps1
 PROMPT_DIRTRIM=3
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# ROS
+# source /opt/ros/melodic/setup.bash
+
+# for ArduPilot
+source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash

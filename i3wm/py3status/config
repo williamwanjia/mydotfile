@@ -11,7 +11,7 @@ sysdata {
 }
 
 time {
-    format = ": %a %d %b : %H⦂%M"
+    format = "%a %d %b %H:%M"
     on_click 1 = "reload"
     on_click 2 = "exec zenity --calendar"
 }

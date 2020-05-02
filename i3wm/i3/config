@@ -15,7 +15,11 @@
 for_window [class="^.*"] border pixel 0
 gaps inner 8 
 
-set $term --no-startup-id gnome-terminal --hide-menubar
+# set $term --no-startup-id gnome-terminal --hide-menubar
+set $term --no-startup-id terminator
+
+#
+set $changebg feh --randomize --bg-scale ~/myrepos/mydotfile/i3wm/background/*
 
 # Mod1=Alt 
 set $mod Mod1
@@ -64,7 +68,8 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec gnome-terminal --hide-menubar
+# bindsym $mod+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q [con_id="__focused__" title="^(?!dropdown_).*$"] kill
@@ -134,7 +139,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # switch to workspace
-bindsym $mod+1 workspace 1
+bindsym $mod+1 workspace 1; exec $changebg
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
@@ -208,7 +213,7 @@ bindsym $mod+o mode "launcher"
 bindsym control+shift+s exec disper -S; exec feh --bg-scale ~/Pictures/Ka50.jpg
 bindsym control+shift+e exec disper -e; exec feh --bg-scale ~/Pictures/Ka50.jpg
 bindsym control+shift+a exec disper -s; exec feh --bg-scale ~/Pictures/Ka50.jpg
-bindsym control+shift+w exec feh --bg-scale ~/Pictures/BG.jpg 
+bindsym control+shift+w exec $changebg 
 bindsym control+shift+p exec i3lock
 
 
@@ -257,7 +262,7 @@ bar {
 exec xrandr
 exec xrandr --output VGA-1 --auto
 
-exec --no-startup-id feh --bg-scale ~/Pictures/BG.jpg
+exec --no-startup-id feh --randomize --bg-scale ~/myrepos/mydotfile/i3wm/background/*
 
 exec fcitx-autostart
 
@@ -269,10 +274,11 @@ exec --no-startup-id xcompmgr
 
 # exec --no-startup-id gnome-settings-daemon
 
-exec xfce4-terminal -T dropdown_term 
+# exec xfce4-terminal -T dropdown_term 
+exec $term -T dropdown_term 
 
 
-bindsym $mod+u [title="dropdown_*"] scratchpad show; [title="dropdown_*"] move position center
+bindsym $mod+u [title="dropdown_*"] scratchpad show; [title="dropdown_*"] move position center; [title="dropdown_*"] move up 200
 
 # exec --no-startup-id xautolock -locker i3lock -time 10 -detectsleep -notify 10
 
