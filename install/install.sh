@@ -5,7 +5,7 @@ sudo apt-get upgrade -y
 sudo apt-get install -y ubuntu-restricted-extras smplayer conky-all \
         vim-gnome disper gedit vim terminator dolphin default-jre fcitx \
         gcc g++ fcitx-googlepinyin pcmanfm autojump make \
-        perl volumeicon-alsa wget axel fcitx-sunpinyin xcompmgr git
+        perl volumeicon-alsa wget axel fcitx-sunpinyin xcompmgr git curl
   
 sudo apt-get upgrade -y
 
