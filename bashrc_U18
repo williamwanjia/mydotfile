@@ -160,10 +160,10 @@ function py_env {
 git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-C1='\033[01;32m'
+C1='\[\033[01;32m\]'
 C2='\[\033[01;34m\]'
-C3='\033[01;36m'
-C4='\033[01;35m'
+C3='\[\033[01;36m\]'
+C4='\[\033[01;35m\]'
 CE='\[\033[00m\]'
 
 export PS1="$C1╭\u@\h$CE:$C2\w$C3`py_env`$C4$(git_branch)\n$C1╰(\A)\$$CE "
@@ -178,4 +178,8 @@ get_ps1() {
 export PROMPT_COMMAND=get_ps1
 
 bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
+# bind 'TAB:menu-complete'
+
+source ~/.fonts/*.sh
+
+
