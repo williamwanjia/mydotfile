@@ -4,31 +4,37 @@ set -e
 set -x
 
 # updata system
-sudo apt updata
+sudo apt update
 sudo apt upgrade -y
 
 # install dependencies
 
-sudo apt install gcc cmake qt5-default tcl8.5 tcl8.5-dev libtcl8.5 \
-    tk8.5 tk8.5-dev libtk8.5 tcl-tclreadline git
+sudo apt install -y gcc cmake qt5-default tcl8.5 tcl8.5-dev libtcl8.5 \
+    tk8.5 tk8.5-dev libtk8.5 tcl-tclreadline git libxt-dev
 
 # make repos dir
 cd
 
-if [ -d "repos"]; then
-  echo "repos exists"
-else
-  mkdir repos
+if [ -d repos ]; then
+    echo "repos exists"
+  else
+    mkdir repos
 fi
 
 cd repos
 
-# clone from github
-git clone -b v5_fix https://github.com/williamwanjia/VTK.git vtk_5
-
-if [-d "vtk5_build"]; then
-    echo "build folder exists"
+if [ -d vtk5 ]; then
+    cd vtk5
+    git checkout v5_fix
+    cd ../
 else
+    # clone from github
+    git clone -b v5_fix https://github.com/williamwanjia/VTK.git vtk5
+fi
+
+if [ -d vtk5_build ]; then
+    echo "build folder exists"
+  else
     mkdir vtk5_build
 fi
 
