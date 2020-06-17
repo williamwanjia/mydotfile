@@ -218,6 +218,7 @@ mode "launcher" {
     bindsym e exec pcmanfm 
     bindsym m exec $term -e cmus 
     # bindsym x exec xmaple
+    bindsym control+shift+p exec gnome-screenshot -i
     bindsym p exec "terminator -e source /home/jiawan/initROS.zsh"
     bindsym Escape mode "default"
     bindsym Return mode "default"
@@ -234,7 +235,7 @@ bindsym control+shift+d exec xrandr --output VGA-1 --auto
 
 # Screen Shots
 bindsym Print exec scrot '%m-%d-%k-%M_screenshot.jpg' -e 'mv $f ~/Pictures/Screenshots'
-bindsym Control+Print exec gnome-screenshot -i
+bindsym control+Print exec gnome-screenshot -i
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -288,6 +289,8 @@ bar {
 exec xrandr
 exec xrandr --output VGA-1 --auto
 
+exec conky -c /home/jiawan/.config/conky/conkyrc2
+
 exec --no-startup-id feh --randomize --bg-scale ~/myrepos/mydotfile/i3wm/background/*
 
 exec fcitx-autostart
@@ -297,6 +300,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
 
 exec --no-startup-id xcompmgr
+
+exec --no-startup-id dunst
+
+exec conky -c /home/jiawan/.config/conky/JConky
 
 # exec --no-startup-id gnome-settings-daemon
 

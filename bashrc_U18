@@ -129,6 +129,7 @@ fi
 
 # To use OASE toolbox
 export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo
+# export PYTHONPATH=$PYTHONPATH:/home/jiawan/myrepos/InWareDrones
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -138,6 +139,8 @@ export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/0
 
 # for ArduPilot
 source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
+export PATH=$PATH:$HOME/ardupilot/Tools/autotest
+export PATH=/usr/lib/ccache:$PATH
 
 
 source /usr/share/bash-completion/bash_completion
@@ -182,4 +185,12 @@ bind 'set show-all-if-ambiguous on'
 
 source ~/.fonts/*.sh
 
+# For Go
+export PATH=$PATH:/usr/local/go/bin
+source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
+source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
 
+
+export PATH=$PATH:/home/jiawan/bin
+
+export LD_LIBRARY_PATH=/usr/local/lib/vtk-5.10

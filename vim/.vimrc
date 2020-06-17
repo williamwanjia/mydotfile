@@ -80,6 +80,7 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 " In 2020-04, YouCompleteMe became very slow, so tried this one
 " Still slow
 " Plug 'davidhalter/jedi-vim'
+Plug 'https://github.com/ajh17/VimCompletesMe'
 
 " Color theme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -206,13 +207,19 @@ set laststatus=2
 set confirm
  
 " Use visual bell instead of beeping when doing something wrong
-set visualbell
+" set visualbell
  
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
 " is unset, this does nothing.
-set t_vb=
- 
+" set t_vb=
+
+" The vim start to show some thing like >4;2m. Add following two lines
+" solve the problem 
+let &t_TI = ""
+let &t_TE = ""
+
+
 " Enable use of the mouse for all modes
 set mouse=a
  
@@ -411,6 +418,7 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader = ","
 
 nmap <Leader>ll :set tw=79<cr>
+nmap <Leader>li :set tw=999<cr>
 nmap <Leader>ls :set tw=72<cr>
 
 if &term =~ '256color'
