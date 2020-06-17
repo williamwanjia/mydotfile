@@ -24,12 +24,7 @@ fi
 cd repos
 
 # clone from github
-git clone https://github.com/williamwanjia/VTK.git vtk_5
-
-cd vtk_5
-git checkout v5_fix
-
-cd ../
+git clone -b v5_fix https://github.com/williamwanjia/VTK.git vtk_5
 
 if [-d "vtk5_build"]; then
     echo "build folder exists"
@@ -38,6 +33,7 @@ else
 fi
 
 cd vtk5_build
+rm -rf *
 
 cmake -Wno-dev -DBUILD_SHARED_LIBS:BOOL=ON \
       -DVTK_WRAP_TCL:BOOL=ON \
@@ -46,7 +42,7 @@ cmake -Wno-dev -DBUILD_SHARED_LIBS:BOOL=ON \
       -DTCL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libtcl8.5.so \
       -DTCL_TCLSH:FILEPATH=/usr/bin/tclsh8.5 \
       -DTK_INCLUDE_PATH:PATH=/usr/include/tcl8.5 \
-      -DTK_INTERNAL_PATH:PATH=/home/jiawan/repos/vtk5/Utilities/TclTk/internals/tk8.5 \
+      -DTK_INTERNAL_PATH:PATH=../vtk5/Utilities/TclTk/internals/tk8.5 \
       -DTK_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libtk8.5.so \
       ../vtk5
 
