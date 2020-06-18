@@ -10,7 +10,10 @@ sudo apt upgrade -y
 # install dependencies
 
 sudo apt install -y gcc cmake qt5-default tcl8.5 tcl8.5-dev libtcl8.5 \
-    tk8.5 tk8.5-dev libtk8.5 tcl-tclreadline git libxt-dev
+    tk8.5 tk8.5-dev libtk8.5 tcl-tclreadline git libxt-dev \
+    libreadline-dev qtcreator* libqt5webenginewidgets5 qtwebengine5-dev \
+    qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins \
+    libqt5multimedia5 libqt5designer5 qttools5-dev libqt5svg5*
 
 # make repos dir
 cd
