@@ -72,3 +72,9 @@ cd pvb
 ./build.sh
 
 sudo ./install.sh
+
+echo LD_LIBRARY_PATH=/usr/local/lib/vtk-5.10/ >> ~/.bashrc
+echo TCLLIBPATH=/usr/local/lib/vtk-5.10/ >> ~/.bashrc
+
+source ~/.bashrc
+
