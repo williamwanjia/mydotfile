@@ -124,11 +124,8 @@ fi
 
 # The following are added by Jia Wan
 
-# to use autojump
-. /usr/share/autojump/autojump.sh
-
 # To use OASE toolbox
-export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo
+export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01b_SmartCON/02_Work
 # export PYTHONPATH=$PYTHONPATH:/home/jiawan/myrepos/InWareDrones
 
 # fzf
@@ -187,10 +184,13 @@ source ~/.fonts/*.sh
 
 # For Go
 export PATH=$PATH:/usr/local/go/bin
-source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
-source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
-
 
 export PATH=$PATH:/home/jiawan/bin
 
-export LD_LIBRARY_PATH=/usr/local/lib/vtk-5.10
+# export LD_LIBRARY_PATH=/usr/local/lib/vtk-5.10
+export LD_LIBRARY_PATH=/usr/local/lib
+
+# to use autojump
+# This one must be after the PS1 setting
+. /usr/share/autojump/autojump.sh
+
