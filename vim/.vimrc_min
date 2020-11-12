@@ -109,11 +109,6 @@ set confirm
 " is unset, this does nothing.
 " set t_vb=
 
-" The vim start to show some thing like >4;2m. Add following two lines
-" solve the problem 
-let &t_TI = ""
-let &t_TE = ""
-
 
 " Enable use of the mouse for all modes
 set mouse=a
@@ -185,7 +180,6 @@ syntax spell toplevel
 set background=dark
 " Italics for my favorite color scheme
 
-set termguicolors " if you want to run vim in a terminal
 
 " Set spell check highlight
 :hi SpellBad cterm=underline ctermfg=red
