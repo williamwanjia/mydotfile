@@ -1,7 +1,8 @@
 #!/bin/bash
+
 # Install i3-gaps on Ubuntu 18
-# set -e
-# set -x
+set -e
+set -x
 sudo apt-get update && sudo apt-get -y upgrade && \
 
 sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \

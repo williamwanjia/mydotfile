@@ -1,9 +1,7 @@
 # Git-------------------------------------------------
-# git config --global user.email "williamwanjia@gmail.com"
-# git config --global user.name "Jia Wan"
-# git config --global core.editor "vim"
-
-
+git config --global user.email "williamwanjia@gmail.com"
+git config --global user.name "Jia Wan"
+git config --global core.editor "vim"
 
 # I3-------------------------------------------------
 
