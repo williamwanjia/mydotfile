@@ -269,7 +269,7 @@ bar {
 	position top
 	tray_output none
 	status_command /home/jiawan/repos/bumblebee-status/bumblebee-status \
-            -m uptime weather indicator nic cpu memory battery amixer date time \
+            -m uptime indicator nic cpu memory battery amixer date time \
             -p time.format="%H:%M" date.format="%a, %d/%m/%Y" indicator.include="numlock" \
             memory.warning=40 memory.critical=80 \
             -t solarized-powerline
