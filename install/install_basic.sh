@@ -40,4 +40,7 @@ sudo apt-get update
 
 sudo apt-get install typora
 
+# fonts
+sudo apt-get install fonts-font-awesome fonts-powerline
+
 

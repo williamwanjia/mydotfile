@@ -66,7 +66,7 @@ Plug 'https://github.com/scrooloose/nerdcommenter'
 Plug 'https://github.com/itchyny/lightline.vim'
 
 " reST plugin 
-Plug 'https://github.com/gu-fan/riv.vim'
+" Plug 'https://github.com/gu-fan/riv.vim'
 
 " Markdown plugin
 Plug 'godlygeek/tabular'
@@ -76,11 +76,11 @@ Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/sheerun/vim-polyglot'
 
 " for python
-" Plug 'https://github.com/Valloric/YouCompleteMe'
+Plug 'https://github.com/Valloric/YouCompleteMe'
 " In 2020-04, YouCompleteMe became very slow, so tried this one
 " Still slow
 " Plug 'davidhalter/jedi-vim'
-Plug 'https://github.com/ajh17/VimCompletesMe'
+" Plug 'https://github.com/ajh17/VimCompletesMe'
 
 " Color theme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -94,7 +94,7 @@ Plug 'https://github.com/fneu/breezy'
 Plug 'https://github.com/w0rp/ale'
 
 "rsT preview
-Plug 'https://github.com/gu-fan/InstantRst'
+" Plug 'https://github.com/gu-fan/InstantRst'
 
 "Tagbar for code outline
 Plug 'https://github.com/majutsushi/tagbar'
@@ -102,6 +102,7 @@ Plug 'https://github.com/majutsushi/tagbar'
 " " Initialize plugin system
 call plug#end()
 " END of Plugin setting---------------------------------------------|
+"
 
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
@@ -248,7 +249,9 @@ set pastetoggle=<F11>
 set shiftwidth=4
 set softtabstop=4
 set expandtab
- 
+
+autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2
+
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
 "set shiftwidth=4
@@ -287,7 +290,7 @@ let g:rainbow_active = 1
 
 " VimWIKI
 
-let g:vimwiki_list = [{'path': '~/myrepos/vimwiki/',
+let g:vimwiki_list = [{'path': '~/Data/myrepos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " lightline
@@ -353,7 +356,7 @@ let g:instant_rst_browser = 'google-chrome'
 
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_sort = 0
-let g:tagbar_width = 50
+let g:tagbar_width = 40
 
 set foldmethod=indent
 
@@ -428,3 +431,6 @@ if &term =~ '256color'
     set t_ut=
 endif
 
+" To show all characters
+:set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+:set list

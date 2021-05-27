@@ -19,7 +19,7 @@ gaps inner 8
 set $term --no-startup-id terminator
 
 #
-set $changebg feh --randomize --bg-scale ~/myrepos/mydotfile/i3wm/background/*
+set $changebg feh --randomize --bg-scale ~/Data/myrepos/mydotfile/i3wm/background/*
 
 # Mod1=Alt 
 set $mod Mod1
@@ -31,7 +31,7 @@ for_window [title="dropdown_*"] floating enable
 for_window [title="dropdown_*"] move scratchpad
 for_window [title="dropdown_*"] sticky enable
 # for_window [title="dropdown_*"] scratchpad show
-for_window [title="dropdown_term"] resize set 1000 600 
+for_window [title="dropdown_term"] resize set 2000 1200
 for_window [title="dropdown_dropdowncalc"] resize set 800 300
 for_window [title="dropdown_term"] border pixel 3
 for_window [title="dropdown_dropdowncalc"] border pixel 2
@@ -82,7 +82,8 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Try the rofi
-bindsym $mod+x exec rofi -show run
+bindsym $mod+x exec rofi -show combi
+bindsym $mod+c exec rofi -show ssh
 
 # change focus
 bindsym $mod+$left focus left
@@ -141,16 +142,27 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-set $wp1 1: 
-set $wp2 2: 
-set $wp3 3: 
-set $wp4 4: 
-set $wp5 5: 
-set $wp6 6: 
-set $wp7 7: 
-set $wp8 8: 
-set $wp9 9: 
-set $wp10 10:  
+# set $wp1 1: 
+# set $wp2 2: 
+# set $wp3 3: 
+# set $wp4 4: 
+# set $wp5 5: 
+# set $wp6 6: 
+# set $wp7 7: 
+# set $wp8 8: 
+# set $wp9 9: 
+# set $wp10 10:  
+
+set $wp1 1
+set $wp2 2
+set $wp3 3
+set $wp4 4
+set $wp5 5
+set $wp6 6
+set $wp7 7
+set $wp8 8
+set $wp9 9
+set $wp10 10
 
 # switch to workspace
 bindsym $mod+1 workspace $wp1; exec $changebg
@@ -239,6 +251,7 @@ bindsym control+Print exec gnome-screenshot -i
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
 # bar {
 #         mode dock 
 #         position top
@@ -268,10 +281,13 @@ bar {
 	font pango:FontAwesome, PowerlineSymbols, Inconsolata 12
 	position top
 	tray_output none
-	status_command /home/jiawan/repos/bumblebee-status/bumblebee-status \
+	status_command /home/jiawan/Data/repos/bumblebee-status/bumblebee-status \
             -m uptime indicator nic cpu memory battery amixer date time \
-            -p time.format="%H:%M" date.format="%a, %d/%m/%Y" indicator.include="numlock" \
-            memory.warning=40 memory.critical=80 \
+            -p time.format="%H:%M" \
+            date.format="%a, %d/%m/%Y" \
+            indicator.include="numlock" \
+            memory.warning=40 memory.critical=80 memory.format="{used}({percent:4.1f}%)" \
+            nic.states="up" nic.format="{intf}-{ssid}" \
             -t solarized-powerline
 }
 
@@ -287,23 +303,22 @@ bar {
 # exec i3-config-wizard
 # #---Starting External Scripts---# #
 exec xrandr
-exec xrandr --output VGA-1 --auto
 
-exec conky -c /home/jiawan/.config/conky/conkyrc2
+# The Conky will not start if there is no delay (--pause=5)
+exec conky --pause=5 -c /home/jiawan/.config/conky/JConky
+# exec conky -c /home/jiawan/.config/conky/conkyrc2
 
-exec --no-startup-id feh --randomize --bg-scale ~/myrepos/mydotfile/i3wm/background/*
+exec --no-startup-id feh --randomize --bg-scale ~/Data/myrepos/mydotfile/i3wm/background/*
 
 exec fcitx-autostart
 
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 
 exec --no-startup-id xcompmgr
 
 exec --no-startup-id dunst
-
-exec conky -c /home/jiawan/.config/conky/JConky
 
 # exec --no-startup-id gnome-settings-daemon
 
@@ -311,7 +326,9 @@ exec conky -c /home/jiawan/.config/conky/JConky
 exec $term -T dropdown_term 
 
 
-bindsym $mod+u [title="dropdown_*"] scratchpad show; [title="dropdown_*"] move position center; [title="dropdown_*"] move up 200
+bindsym $mod+u [title="dropdown_*"] scratchpad show, move position center, move up 200;
+
+bindsym $mod+t [class="Microsoft Teams*"] scratchpad show, resize set 3640 1980, move position center;
 
 # exec --no-startup-id xautolock -locker i3lock -time 10 -detectsleep -notify 10
 
@@ -319,5 +336,6 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:DejaVu Sans Mono 12
 font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 12
 font pango:Terminus 12px
+
 
 

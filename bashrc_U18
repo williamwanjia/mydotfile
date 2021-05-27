@@ -93,7 +93,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # For git
-alias gitlog='git log --graph --pretty --oneline'
+alias gitlog='git log --graph --pretty --oneline --decorate'
 alias gitco='git checkout'
 
 
@@ -125,8 +125,11 @@ fi
 # The following are added by Jia Wan
 
 # To use OASE toolbox
-export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01b_SmartCON/02_Work
-# export PYTHONPATH=$PYTHONPATH:/home/jiawan/myrepos/InWareDrones
+# This is the old path in VM
+# export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01b_SmartCON/02_Work
+
+# For dual boot
+export PYTHONPATH=$PYTHONPATH:/home/jiawan/Document/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/Document/02_FlandersMake/01_Project/01b_SmartCON/02_Work:/home/jiawan/Document/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/PyOASE
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -135,9 +138,9 @@ export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/0
 # source /opt/ros/melodic/setup.bash
 
 # for ArduPilot
-source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
-export PATH=$PATH:$HOME/ardupilot/Tools/autotest
-export PATH=/usr/lib/ccache:$PATH
+# source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
+# export PATH=$PATH:$HOME/ardupilot/Tools/autotest
+# export PATH=/usr/lib/ccache:$PATH
 
 
 source /usr/share/bash-completion/bash_completion
@@ -145,7 +148,7 @@ source /usr/share/bash-completion/bash_completion
 # test for  PS1
 
 # Trim ps1
-PROMPT_DIRTRIM=4
+PROMPT_DIRTRIM=3
 
 function py_env {
 
@@ -160,6 +163,7 @@ function py_env {
 git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
 C1='\[\033[01;32m\]'
 C2='\[\033[01;34m\]'
 C3='\[\033[01;36m\]'
@@ -180,7 +184,7 @@ export PROMPT_COMMAND=get_ps1
 bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
 
-source ~/.fonts/*.sh
+# source ~/.fonts/*.sh
 
 # For Go
 export PATH=$PATH:/usr/local/go/bin
@@ -194,3 +198,18 @@ export LD_LIBRARY_PATH=/usr/local/lib
 # This one must be after the PS1 setting
 . /usr/share/autojump/autojump.sh
 
+export LANG=en_US.UTF-8
+
+# For TAB
+# If there are multiple matches for completion, Tab should cycle through them
+bind 'TAB':menu-complete
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# Perform partial completion on the first Tab press,
+# only start cycling full results on the second Tab press
+bind "set menu-complete-display-prefix on"
+
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/
+export TCLLIBPATH=/usr/local/bin
