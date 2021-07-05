@@ -129,7 +129,16 @@ fi
 # export PYTHONPATH=$PYTHONPATH:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/OneDrive/02_FlandersMake/01_Project/01b_SmartCON/02_Work
 
 # For dual boot
-export PYTHONPATH=$PYTHONPATH:/home/jiawan/Document/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/09_gitrepo:/home/jiawan/Document/02_FlandersMake/01_Project/01b_SmartCON/02_Work:/home/jiawan/Document/02_FlandersMake/01_Project/01_Inwaredrones/02_Work/PyOASE
+# The root path to libraries
+LIBPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib
+
+COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.6
+PYOASEPATH=$LIBPATH/PyOASE
+VEGAPATH=$LIBPATH/VEGA
+IWDPATH=$LIBPATH/InWareDrones
+
+export PYTHONPATH=$PYTHONPATH:$IWDPATH:$LIBPATH:$COASEPATH:\
+$PYOASEPATH:$VEGAPATH
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
