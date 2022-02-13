@@ -132,13 +132,16 @@ fi
 # The root path to libraries
 LIBPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib
 
-COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.6
+# COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.8
+
+COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
 PYOASEPATH=$LIBPATH/PyOASE
 VEGAPATH=$LIBPATH/VEGA
 IWDPATH=$LIBPATH/InWareDrones
+UWBPATH=$LIBPATH/decawave_library
 
 export PYTHONPATH=$PYTHONPATH:$IWDPATH:$LIBPATH:$COASEPATH:\
-$PYOASEPATH:$VEGAPATH
+$PYOASEPATH:$VEGAPATH:$UWBPATH
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -222,3 +225,15 @@ bind "set menu-complete-display-prefix on"
 
 export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/
 export TCLLIBPATH=/usr/local/bin
+source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
+# source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
+
+
+# For ROS
+# The following alias make it easier to start the Ardupilot SITL
+alias sitl_copter='sim_vehicle.py -v ArduCopter --console --map -L Leuven -I 1 --sysid=1 --out "127.0.0.1:14601"'
+alias sitl_rover='sim_vehicle.py -v Rover --console --map -L Leuven -I 2 --sysid=2 --out "127.0.0.1:14602"'
+
+# Start mavproxy for two SITL, check the udp if not working
+alias mp_for_2='mavproxy.py --master "udp:127.0.0.1:14570" --master "udp:127.0.0.1:14560" --map --console'
+
