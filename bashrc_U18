@@ -134,14 +134,15 @@ LIBPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib
 
 # COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.8
 
-COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
+# COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
+COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/oase_binary/test/linux-x64/python/3.8
 PYOASEPATH=$LIBPATH/PyOASE
 VEGAPATH=$LIBPATH/VEGA
 IWDPATH=$LIBPATH/InWareDrones
 UWBPATH=$LIBPATH/decawave_library
 
 export PYTHONPATH=$PYTHONPATH:$IWDPATH:$LIBPATH:$COASEPATH:\
-$PYOASEPATH:$VEGAPATH:$UWBPATH
+$PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -234,6 +235,16 @@ source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
 alias sitl_copter='sim_vehicle.py -v ArduCopter --console --map -L Leuven -I 1 --sysid=1 --out "127.0.0.1:14601"'
 alias sitl_rover='sim_vehicle.py -v Rover --console --map -L Leuven -I 2 --sysid=2 --out "127.0.0.1:14602"'
 
-# Start mavproxy for two SITL, check the udp if not working
-alias mp_for_2='mavproxy.py --master "udp:127.0.0.1:14570" --master "udp:127.0.0.1:14560" --map --console'
+alias sitl_master_rover='sim_vehicle.py -v Rover --console --map -L Leuven -I 1 --sysid=1 --out "127.0.0.1:14601"'
+alias sitl_slave_copter='sim_vehicle.py -v ArduCopter --console --map -L Leuven -I 2 --sysid=2 --out "127.0.0.1:14602"'
 
+# Start mavproxy for two SITL, check the udp if not working
+alias mp_for_2='mavproxy.py --master "udp:127.0.0.1:14571" --master "udp:127.0.0.1:14561" --map --console'
+
+alias mavros_master='roslaunch drone_gnc_launch apm_ns.launch ns:="master" fcu_url:="udp://127.0.0.1:14560@" tgt_system:="1"'
+
+alias mavros_slave='roslaunch drone_gnc_launch apm_ns.launch ns:="slave" fcu_url:="udp://127.0.0.1:14570@" tgt_system:="2"'
+
+
+source /opt/ros/noetic/setup.bash
+source ~/ros_ws/ros1_test_ws/devel/setup.bash
