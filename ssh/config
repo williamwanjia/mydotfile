@@ -1,0 +1,120 @@
+Host iwd_gui
+    HostName 192.168.68.22
+    User inwaredrone
+
+Host logv_gui
+    HostName 192.168.68.195
+    User logvilledemofm
+
+Host djim
+    HostName 192.168.68.19
+    User mobile
+
+Host aero1
+    HostName 192.168.68.25
+    User aero
+
+Host aero2
+    HostName 192.168.68.26
+    User aero2
+
+Host djis
+    HostName 192.168.68.162
+    User nvidia
+
+Host pi4
+    HostName 192.168.1.107
+    User ubuntu
+
+Host fmdh
+    HostName 192.168.1.111
+    User ubuntu
+
+Host pi4aero
+    HostName 192.168.68.151
+    User pi
+
+Host fmd
+    HostName 192.168.68.173
+    User ubuntu
+
+Host nvidia
+    HostName 192.168.68.162
+    User nvidia
+
+Host odroid
+    HostName 192.168.4.50
+    User odroid
+
+Host logv
+    HostName 192.168.68.192
+    User logville
+
+Host rover
+    HostName 192.168.68.173
+    User ubuntu
+
+Host rover_out
+    HostName 192.168.4.60
+    User ubuntu
+
+Host rpi3
+    HostName 192.168.68.207
+    User pi
+
+Host p4h
+    HostName 192.168.1.8
+    User ubuntu
+
+Host aidrone_h
+    HostName 192.168.1.14
+    User ubuntu
+
+Host aidrone
+    HostName 192.168.68.151
+    User ubuntu
+
+Host p3h
+    HostName 192.168.1.9
+    User pi
+
+Host master_rover
+    HostName 192.168.68.205
+    User ubuntu
+
+Host master_rover_out
+    HostName 192.168.4.61
+    User ubuntu
+
+Host p4_2g_out
+    HostName 192.168.4.49
+    User ubuntu
+
+Host slave_copter
+    HostName 192.168.68.173
+    User ubuntu
+
+Host slave_copter_out
+    HostName 192.168.4.60
+    User ubuntu
+
+Host slave_rover
+    HostName 192.168.68.206
+    User ubuntu
+
+Host slave_rover_out
+    HostName 192.168.4.62
+    User ubuntu
+
+Host slave3_out
+    HostName 192.168.4.63
+    User ubuntu
+
+Host dm
+    HostName 192.168.120.10
+    User nvidia
+
+Host midas
+    HostName 192.168.20.10
+    User nvidia
+
