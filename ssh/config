@@ -34,10 +34,6 @@ Host pi4aero
     HostName 192.168.68.151
     User pi
 
-Host fmd
-    HostName 192.168.68.173
-    User ubuntu
-
 Host nvidia
     HostName 192.168.68.162
     User nvidia
@@ -50,10 +46,6 @@ Host logv
     HostName 192.168.68.192
     User logville
 
-Host rover
-    HostName 192.168.68.173
-    User ubuntu
-
 Host rover_out
     HostName 192.168.4.60
     User ubuntu
@@ -63,7 +55,7 @@ Host rpi3
     User pi
 
 Host p4h
-    HostName 192.168.1.8
+    HostName 192.168.1.17
     User ubuntu
 
 Host aidrone_h
@@ -90,21 +82,21 @@ Host p4_2g_out
     HostName 192.168.4.49
     User ubuntu
 
-Host slave_copter
+Host slave_rover
     HostName 192.168.68.173
     User ubuntu
 
-Host slave_copter_out
+Host slave_rover_out
     HostName 192.168.4.60
     User ubuntu
 
-Host slave_rover
-    HostName 192.168.68.206
-    User ubuntu
+# Host slave_rover
+#     HostName 192.168.68.206
+#     User ubuntu
 
-Host slave_rover_out
-    HostName 192.168.4.62
-    User ubuntu
+# Host slave_rover_out
+#     HostName 192.168.4.62
+#     User ubuntu
 
 Host slave3_out
     HostName 192.168.4.63
@@ -118,3 +110,18 @@ Host midas
     HostName 192.168.20.10
     User nvidia
 
+Host tether_nuc
+    HostName 192.168.68.164
+    User ubuntu
+
+Host tether_nuc_out
+    HostName 192.168.4.53
+    User ubuntu
+
+Host bose
+    HostName 192.168.68.106
+    User bosedrone
+
+Host hil
+    HostName 192.168.68.159
+    User mobile

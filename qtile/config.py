@@ -95,6 +95,8 @@ keys = [
     #      desc="Spawn a command using a prompt widget"),
     Key([mod], "x", lazy.spawn("rofi -show combi"),
         desc="Start rofi"),
+    Key([mod], "c", lazy.spawn("rofi -show ssh"),
+        desc="Start rofi for ssh"),
     Key([mod], "t", lazy.window.toggle_floating(), desc='Toggle floating'),
     KeyChord([mod], "r",
              [Key([], "g",
@@ -108,16 +110,16 @@ groups = [Group(i) for i in "1234567890"]
 for i in groups:
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
+        Key([mod], i.name, lazy.group[i.name].toscreen(toggle=True),
             desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
+        #  Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+        #      desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+           desc="move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
@@ -127,13 +129,13 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     #  layout.MonadTall(),
-    # layout.MonadWide(),
     # layout.RatioTile(),
     layout.Tile(margin=5, add_after_last=True),
-    layout.Floating(),
+    #  layout.Floating(),
     layout.TreeTab(fontsize=30,
                    panel_width=200),
     layout.Matrix(margin=3),
+    layout.MonadWide(),
     # layout.VerticalTile(),
     #  layout.Zoomy(),
 ]
@@ -164,11 +166,12 @@ bar_size = 55
 
 
 def left_arrow(fc, bc):
-    wgt = widget.TextBox(text='⮂',
+    wgt = widget.TextBox(text='',
+                         font="FontAwesome",
                          background=bc,
                          foreground=fc,
-                         padding=0,
-                         fontsize=bar_size+5)
+                         padding=-1,
+                         fontsize=bar_size+50)
     return wgt
 
 

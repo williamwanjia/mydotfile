@@ -154,6 +154,7 @@ $PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module
 # source /home/jiawan/repos/ardupilot/Tools/completion/completion.bash
 # export PATH=$PATH:$HOME/ardupilot/Tools/autotest
 # export PATH=/usr/lib/ccache:$PATH
+export PATH=$PATH:/home/jiawan/Data/android-studio/bin
 
 
 source /usr/share/bash-completion/bash_completion
@@ -248,3 +249,9 @@ alias mavros_slave='roslaunch drone_gnc_launch apm_ns.launch ns:="slave" fcu_url
 
 source /opt/ros/noetic/setup.bash
 source ~/ros_ws/ros1_test_ws/devel/setup.bash
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
+
+export PATH=$PATH:/home/jiawan/Data/android-studio/bin:\
+/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/VEGA/cml_tool
+
