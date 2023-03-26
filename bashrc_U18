@@ -130,19 +130,21 @@ fi
 
 # For dual boot
 # The root path to libraries
-LIBPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib
+LIBPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib
 
 # COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.8
 
 # COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
-COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/oase_binary/test/linux-x64/python/3.8
+# COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/test/linux-x64/python/3.8
+COASEPATH=$LIBPATH/oase_binary/v1p1/linux-x64/python/3.8
 PYOASEPATH=$LIBPATH/PyOASE
 VEGAPATH=$LIBPATH/VEGA
+SUNDAEPATH=$LIBPATH/SUNDAE
 IWDPATH=$LIBPATH/InWareDrones
 UWBPATH=$LIBPATH/decawave_library
 
 export PYTHONPATH=$PYTHONPATH:$IWDPATH:$LIBPATH:$COASEPATH:\
-$PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module
+$PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module:$SUNDAEPATH
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -227,7 +229,8 @@ bind "set menu-complete-display-prefix on"
 
 export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/
 export TCLLIBPATH=/usr/local/bin
-source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
+
+# source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
 # source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
 
 
@@ -248,10 +251,11 @@ alias mavros_slave='roslaunch drone_gnc_launch apm_ns.launch ns:="slave" fcu_url
 
 
 source /opt/ros/noetic/setup.bash
-source ~/ros_ws/ros1_test_ws/devel/setup.bash
+source ~/ros_ws/ros1_ws/devel/setup.bash
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
 
-export PATH=$PATH:/home/jiawan/Data/android-studio/bin:\
-/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/VEGA/cml_tool
+# export PATH=$PATH:/home/jiawan/Data/android-studio/bin:\
+# /home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/VEGA/cml_tool
 
+source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash

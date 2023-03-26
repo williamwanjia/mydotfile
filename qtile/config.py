@@ -132,8 +132,8 @@ layouts = [
     # layout.RatioTile(),
     layout.Tile(margin=5, add_after_last=True),
     #  layout.Floating(),
-    layout.TreeTab(fontsize=30,
-                   panel_width=200),
+    layout.TreeTab(fontsize=15,
+                   panel_width=120),
     layout.Matrix(margin=3),
     layout.MonadWide(),
     # layout.VerticalTile(),
@@ -150,10 +150,13 @@ colors = [["#282c34", "#282c34"],  # panel background
           ["#e1acff", "#e1acff"],  # window name
           ["#ecbbfb", "#ecbbfb"]]  # backbround for inactive screens
 
+
+bar_size = 23
+
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
     font="Ubuntu Mono",
-    fontsize = 32,
+    fontsize = bar_size - 8,
     padding = 3,
     background=colors[0]
 )
@@ -162,8 +165,6 @@ extension_defaults = widget_defaults.copy()
 pre_bc = widget_defaults['background']
 pre_fc = None
 
-bar_size = 55
-
 
 def left_arrow(fc, bc):
     wgt = widget.TextBox(text='',
@@ -171,7 +172,7 @@ def left_arrow(fc, bc):
                          background=bc,
                          foreground=fc,
                          padding=-1,
-                         fontsize=bar_size+50)
+                         fontsize=bar_size+18)
     return wgt
 
 
@@ -208,10 +209,10 @@ screens = [
                             format='%l:%c%t(%f) W:%w H:%h',
                             background=colors[5]),
                 left_arrow(colors[0], colors[5]),
-                widget.TextBox(text=wifi_icon,
-                               font="FontAwesome"),
-                widget.Wlan(interface='wlp111s0',
-                            format='{essid} {percent:2.0%}'),
+                #  widget.TextBox(text=wifi_icon,
+                #                 font="FontAwesome"),
+                #  widget.Wlan(interface='wlp111s0',
+                #              format='{essid} {percent:2.0%}'),
                 widget.BatteryIcon(),
                 widget.Battery(),
                 left_arrow(colors[5], colors[0]),
@@ -238,7 +239,7 @@ screens = [
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 #  widget.QuickExit(),
             ],
-            55,
+            bar_size,
         ),
     ),
 ]

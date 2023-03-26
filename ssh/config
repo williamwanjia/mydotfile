@@ -123,5 +123,40 @@ Host bose
     User bosedrone
 
 Host hil
+    HostName 192.168.8.159
+    User mobile
+
+Host hil_wifi
     HostName 192.168.68.159
     User mobile
+
+Host rz
+    HostName 192.168.68.252
+    User rock
+
+Host rz_h
+    HostName 192.168.1.108
+    User rock
+
+Host minidrone
+    HostName 192.168.68.43
+    User pi
+
+Host minidrone_h
+    HostName 192.168.1.107
+    User pi
+
+Host x8
+    HostName 192.168.1.110
+    User fio
+
+Host p3test
+    HostName 192.168.1.101
+    User pi
+
+Host bpi_h
+    HostName 192.168.1.106
+    User bpi
+
+
+
