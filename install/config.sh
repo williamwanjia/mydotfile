@@ -1,7 +1,20 @@
+set +x
+set +e
+
 # Git-------------------------------------------------
 git config --global user.email "williamwanjia@gmail.com"
 git config --global user.name "Jia Wan"
-git config --global core.editor "vim"
+git config --global core.editor "nvim"
+
+
+# awesome
+
+cd ~/.config
+git clone git@github.com:williamwanjia/awesome_cfg.git awesome
+
+cd awesome
+git submodule init
+git submodule update --recursive
 
 # I3-------------------------------------------------
 
