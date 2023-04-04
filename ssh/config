@@ -158,5 +158,9 @@ Host bpi_h
     HostName 192.168.1.106
     User bpi
 
+Host piz_h
+    HostName 192.168.1.106
+    User pi
+
 
 

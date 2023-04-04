@@ -130,13 +130,13 @@ fi
 
 # For dual boot
 # The root path to libraries
-LIBPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib
+LIBPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib/
 
 # COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.8
 
 # COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
 # COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/test/linux-x64/python/3.8
-COASEPATH=$LIBPATH/oase_binary/v1p1/linux-x64/python/3.8
+COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/v1p1/linux-x64/python/3.8
 PYOASEPATH=$LIBPATH/PyOASE
 VEGAPATH=$LIBPATH/VEGA
 SUNDAEPATH=$LIBPATH/SUNDAE

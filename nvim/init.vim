@@ -98,6 +98,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Nord
 Plug 'arcticicestudio/nord-vim'
 
+Plug 'morhetz/gruvbox'
+
 " Testing plugins
 "
 
@@ -326,7 +328,7 @@ set background=dark
 " Italics for my favorite color scheme
 " let g:palenight_terminal_italics=1
 
-colorscheme nord
+colorscheme gruvbox
 
 set termguicolors " if you want to run vim in a terminal
 
