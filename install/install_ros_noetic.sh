@@ -16,4 +16,4 @@ sudo apt install -y python3-rosdep python3-rosinstall \
 sudo rosdep init
 rosdep update
 
-# sudo apt-get install ros-noetic-mavros ros-noetic-mavros-extras
+sudo apt-get install ros-noetic-mavros ros-noetic-mavros-extras

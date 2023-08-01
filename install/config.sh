@@ -1,5 +1,5 @@
-set +x
-set +e
+set -x
+set -e
 
 # Git-------------------------------------------------
 git config --global user.email "williamwanjia@gmail.com"

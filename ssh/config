@@ -60,11 +60,11 @@ Host p4h
 
 Host aidrone_h
     HostName 192.168.1.14
-    User ubuntu
+    User pi
 
 Host aidrone
     HostName 192.168.68.151
-    User ubuntu
+    User pi
 
 Host p3h
     HostName 192.168.1.9
@@ -122,12 +122,20 @@ Host bose
     HostName 192.168.68.106
     User bosedrone
 
+Host terumo
+    HostName 192.168.68.6
+    User bosedrone
+
 Host hil
-    HostName 192.168.8.159
+    HostName 192.168.0.119
     User mobile
 
 Host hil_wifi
     HostName 192.168.68.159
+    User mobile
+
+Host hil_h
+    HostName 192.168.1.114
     User mobile
 
 Host rz
@@ -136,6 +144,10 @@ Host rz
 
 Host rz_h
     HostName 192.168.1.108
+    User rock
+
+Host rz2_h
+    HostName 192.168.1.112
     User rock
 
 Host minidrone
@@ -162,5 +174,10 @@ Host piz_h
     HostName 192.168.1.106
     User pi
 
+Host hil_s
+    HostName 192.168.0.118
+    User siemens
 
-
+Host makelab
+    HostName 192.168.68.76
+    User proeftuin

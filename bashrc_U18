@@ -250,12 +250,24 @@ alias mavros_master='roslaunch drone_gnc_launch apm_ns.launch ns:="master" fcu_u
 alias mavros_slave='roslaunch drone_gnc_launch apm_ns.launch ns:="slave" fcu_url:="udp://127.0.0.1:14570@" tgt_system:="2"'
 
 
-source /opt/ros/noetic/setup.bash
-source ~/ros_ws/ros1_ws/devel/setup.bash
+# ROS1
+# source /opt/ros/noetic/setup.bash
+# source ~/ros_ws/ros1_ws/devel/setup.bash
+
+# ROS2
+source /opt/ros/foxy/setup.bash
+source ~/ros_ws/ros2_ws/install/setup.bash
+
+export ROS_DOMAIN_ID=88
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
 
 # export PATH=$PATH:/home/jiawan/Data/android-studio/bin:\
 # /home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/VEGA/cml_tool
 
+source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash
+export PICO_SDK_PATH=/home/jiawan/Documents/apps/pico/pico-sdk
+export PICO_EXAMPLES_PATH=/home/jiawan/Documents/apps/pico/pico-examples
+export PICO_EXTRAS_PATH=/home/jiawan/Documents/apps/pico/pico-extras
+export PICO_PLAYGROUND_PATH=/home/jiawan/Documents/apps/pico/pico-playground
 source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash
