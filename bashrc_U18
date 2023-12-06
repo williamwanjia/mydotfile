@@ -130,21 +130,24 @@ fi
 
 # For dual boot
 # The root path to libraries
-LIBPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib/
+LIBPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/
 
 # COASEPATH=$LIBPATH/oase-binaries/linux-x64/python/3.8
 
 # COASEPATH=/home/jiawan/Document/02_FlandersMake/01_Project/91_Lib/COASE/build/binaries/python
 # COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/test/linux-x64/python/3.8
-COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/v1p1/linux-x64/python/3.8
+# COASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/oase_binary/v1p1/linux-x64/python/3.8
+#
+COASEPATH=$LIBPATH/oase_binary/dev/linux-x64/python/3.10
 PYOASEPATH=$LIBPATH/PyOASE
 VEGAPATH=$LIBPATH/VEGA
 SUNDAEPATH=$LIBPATH/SUNDAE
 IWDPATH=$LIBPATH/InWareDrones
 UWBPATH=$LIBPATH/decawave_library
+UWBPATH2=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/decawave_ros2/UWB
 
 export PYTHONPATH=$PYTHONPATH:$IWDPATH:$LIBPATH:$COASEPATH:\
-$PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module:$SUNDAEPATH
+$PYOASEPATH:$VEGAPATH:$UWBPATH:$LIBPATH/temp_module:$SUNDAEPATH:$UWBPATH2
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -233,6 +236,10 @@ export TCLLIBPATH=/usr/local/bin
 # source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
 # source /home/jiawan/Data/repos/ardupilot/Tools/completion/completion.bash
 
+# Anafi AI 
+#
+alias anafi_sim_reset='sphinx-cli action -m world fwman world_reset_all'
+
 
 # For ROS
 # The following alias make it easier to start the Ardupilot SITL
@@ -249,16 +256,17 @@ alias mavros_master='roslaunch drone_gnc_launch apm_ns.launch ns:="master" fcu_u
 
 alias mavros_slave='roslaunch drone_gnc_launch apm_ns.launch ns:="slave" fcu_url:="udp://127.0.0.1:14570@" tgt_system:="2"'
 
+alias anafi_sim='sphinx "/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib/olympe_ros/playground/anafi_ai.drone"'
 
 # ROS1
 # source /opt/ros/noetic/setup.bash
 # source ~/ros_ws/ros1_ws/devel/setup.bash
 
 # ROS2
-source /opt/ros/foxy/setup.bash
+source /opt/ros/humble/setup.bash
 source ~/ros_ws/ros2_ws/install/setup.bash
 
-export ROS_DOMAIN_ID=88
+# export ROS_DOMAIN_ID=0
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
 
@@ -271,3 +279,6 @@ export PICO_EXAMPLES_PATH=/home/jiawan/Documents/apps/pico/pico-examples
 export PICO_EXTRAS_PATH=/home/jiawan/Documents/apps/pico/pico-extras
 export PICO_PLAYGROUND_PATH=/home/jiawan/Documents/apps/pico/pico-playground
 source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash
+
+export PATH=/home/jiawan/.nexustools:$PATH
+

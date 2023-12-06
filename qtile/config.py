@@ -26,10 +26,14 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+#  from libqtile import bar, layout, widget
+from libqtile import bar, layout
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
 
 import os
 import subprocess
@@ -165,6 +169,12 @@ extension_defaults = widget_defaults.copy()
 pre_bc = widget_defaults['background']
 pre_fc = None
 
+powerline = {
+    "decorations": [
+        PowerLineDecoration(path="rounded_right")
+    ]
+}
+
 
 def left_arrow(fc, bc):
     wgt = widget.TextBox(text='',
@@ -183,6 +193,7 @@ wifi_icon = ""
 
 screens = [
     Screen(
+        wallpaper="~/Documents/myrepos/mydotfile/i3wm/background/eve/eve1.jpg",
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(custom_icon_paths=icon_path,
@@ -192,7 +203,7 @@ screens = [
                                 highlight_method='block'),
                 #  widget.Prompt(),
                 widget.TaskList(highlight_method='block',
-                                max_title_width=0),
+                                max_title_width=160, **powerline),
                 #  widget.WindowName(),
                 #  widget.Chord(
                 #      chords_colors={
@@ -204,39 +215,43 @@ screens = [
                 #  widget.OpenWeather(app_key="7d6dcb7250548b169c47397cdf78030a",
                 #                     cityid=2792482,
                 #                     format='{location_city}: {main_temp} ({main_feels_like})°{units_temperature} {humidity}% {wind_speed} {weather_details}'),
-                left_arrow(colors[5], colors[0]),
+                #  left_arrow(colors[5], colors[0]),
                 widget.Wttr(location={'Leuven':'Leuven'},
-                            format='%l:%c%t(%f) W:%w H:%h',
-                            background=colors[5]),
-                left_arrow(colors[0], colors[5]),
+                            format='%c%t(%f) %w %h',
+                            background=colors[5], **powerline),
+                #  left_arrow(colors[0], colors[5]),
                 #  widget.TextBox(text=wifi_icon,
                 #                 font="FontAwesome"),
-                #  widget.Wlan(interface='wlp111s0',
-                #              format='{essid} {percent:2.0%}'),
-                widget.BatteryIcon(),
-                widget.Battery(),
-                left_arrow(colors[5], colors[0]),
-                widget.TextBox('Cpu', background=colors[5], padding=0),
+                widget.WiFiIcon(interface='wlp0s20f3',
+                                **powerline),
+                #  widget.Wlan(interface='wlp0s20f3',
+                #              format='{essid} {percent:2.0%}', **powerline),
+                #  widget.BatteryIcon(**powerline),
+                #  widget.Battery(**powerline),
+                widget.UPowerWidget(**powerline),
+                #  left_arrow(colors[5], colors[0]),
+                widget.TextBox('Cpu', background=colors[5], padding=0, **powerline),
                 widget.CPUGraph(background=colors[5],
-                                border_width=0,
+                                border_width=0, samples=30,
                                 graph_color="8E8B8A",
-                                fill_color="8E8B8A"),
-                widget.TextBox('Mem', background=colors[5]),
+                                fill_color="8E8B8A", **powerline),
+                widget.TextBox('Mem', background=colors[5], **powerline),
                 widget.MemoryGraph(background=colors[5],
-                                   border_width=0,
+                                   border_width=0, samples=30,
                                    graph_color="8E8B8A",
-                                   fill_color="8E8B8A"),
-                left_arrow(colors[0], colors[5]),
-                widget.CapsNumLockIndicator(),
-                left_arrow(colors[5], colors[0]),
+                                   fill_color="8E8B8A", **powerline),
+                #  left_arrow(colors[0], colors[5]),
+                widget.CapsNumLockIndicator(**powerline),
+                #  left_arrow(colors[5], colors[0]),
                 widget.TextBox(text='',
                                font="FontAwesome",
-                               background=colors[5]),
-                widget.Volume(background=colors[5]),
+                               background=colors[5], **powerline),
+                widget.Volume(background=colors[5], **powerline),
+                #  widget.ALSAWidget(mode="both", background=colors[5], **powerline),
                 widget.Systray(background=colors[5],
-                               icon_size=bar_size - 10),
-                left_arrow(colors[0], colors[5]),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                               icon_size=bar_size - 10, **powerline),
+                #  left_arrow(colors[0], colors[5]),
+                widget.Clock(format='%Y-%m-%d %a %H:%M', **powerline),
                 #  widget.QuickExit(),
             ],
             bar_size,
