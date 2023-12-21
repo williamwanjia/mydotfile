@@ -13,3 +13,6 @@ map("n", "<F8>", ":TagbarToggle<CR>")
 
 map("n", "<F4>", ":set spell<CR>")
 map("n", "<F5>", ":set nospell<CR>")
+
+map("n", "<space>ls", ":set textwidth=72<CR> :set colorcolumn=73<CR>")
+map("n", "<space>ll", ":set textwidth=79<CR> :set colorcolumn=80<CR>")

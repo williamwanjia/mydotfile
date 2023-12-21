@@ -65,6 +65,7 @@ opt.relativenumber = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
+opt.autoindent = true
 
 opt.compatible = false
 
@@ -80,7 +81,25 @@ opt.textwidth = 79
 
 opt.spelllang = "en_us"
 
+--opt.formatoptions = "jcroqlnta"
+
 vim.g.mapleader = ","
 
 vim.g.tagbar_sort = 0
 vim.g.tagbar_width = 40
+vim.g.tagbar_silent = 1
+
+-- Add border for floating window
+local _border = "single"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = _border,
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = _border,
+})
+
+vim.diagnostic.config({
+  float = { border = _border },
+})
