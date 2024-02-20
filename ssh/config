@@ -166,12 +166,8 @@ Host p3test
     HostName 192.168.1.101
     User pi
 
-Host bpi_h
-    HostName 192.168.1.106
-    User bpi
-
-Host piz_h
-    HostName 192.168.1.106
+Host p4t_h
+    HostName 192.168.1.107
     User pi
 
 Host hil_s
@@ -189,3 +185,7 @@ Host piz2_h
 Host piz2_m
     HostName 192.168.50.183
     User pi
+
+Host vitropc
+    HostName 10.16.81.13
+    User mobile

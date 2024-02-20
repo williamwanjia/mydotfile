@@ -48,7 +48,10 @@ def autostart():
 
 
 mod = "mod1"
+
 terminal = guess_terminal()
+
+terminal = "kitty"
 
 keys = [
     # Switch between windows
