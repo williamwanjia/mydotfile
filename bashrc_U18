@@ -276,3 +276,6 @@ source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash
 export PATH=/home/jiawan/.nexustools:$PATH
 
 alias nvim_test='XDG_CONFIG_HOME=~/config_test nvim'
+
+eval "$(starship init bash)"
+

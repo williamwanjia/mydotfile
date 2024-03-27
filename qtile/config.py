@@ -163,8 +163,8 @@ bar_size = 23
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
     font="Ubuntu Mono",
-    fontsize = bar_size - 8,
-    padding = 3,
+    fontsize=bar_size - 8,
+    padding=3,
     background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
@@ -174,7 +174,8 @@ pre_fc = None
 
 powerline = {
     "decorations": [
-        PowerLineDecoration(path="rounded_right")
+        # PowerLineDecoration(path="rounded_right")
+        PowerLineDecoration(path="arrow_right")
     ]
 }
 
@@ -219,7 +220,7 @@ screens = [
                 #                     cityid=2792482,
                 #                     format='{location_city}: {main_temp} ({main_feels_like})°{units_temperature} {humidity}% {wind_speed} {weather_details}'),
                 #  left_arrow(colors[5], colors[0]),
-                widget.Wttr(location={'Leuven':'Leuven'},
+                widget.Wttr(location={'Leuven': 'Leuven'},
                             format='%c%t(%f) %w %h',
                             background=colors[5], **powerline),
                 #  left_arrow(colors[0], colors[5]),
@@ -285,6 +286,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
     Match(wm_class='guake'),  #
+    Match(wm_class='qt_gui.py'),  #
+    Match(wm_class='qt_gui'),  #
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
