@@ -13,7 +13,8 @@ map("n", "<F4>", ":set spell<CR>")
 map("n", "<F5>", ":set nospell<CR>")
 
 map("n", "<space>ls", ":set textwidth=72<CR> :set colorcolumn=73<CR>")
-map("n", "<space>ll", ":set textwidth=79<CR> :set colorcolumn=80<CR>")
+map("n", "<space>ll", ":set textwidth=88<CR> :set colorcolumn=89<CR>")
+map("n", "<space>li", ":set textwidth=120<CR> :set colorcolumn=121<CR>")
 
 -- buffers
 -- seems the next and previous are reversed in my cfg, not sure why
@@ -31,11 +32,11 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = t
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })

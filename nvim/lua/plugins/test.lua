@@ -12,6 +12,8 @@ return {
         -- "ibhagwan/fzf-lua",              -- optional
       },
       config = true
-    }
+    },
+
+  "dhruvasagar/vim-table-mode",
 
 }

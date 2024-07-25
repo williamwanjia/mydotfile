@@ -275,7 +275,12 @@ source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash
 
 export PATH=/home/jiawan/.nexustools:$PATH
 
-alias nvim_test='XDG_CONFIG_HOME=~/config_test nvim'
+export PATH=$PATH:/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE/cml_tool
+
+alias dcr='docker compose run --rm'
+alias basedocker='cd /home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/docker; docker compose run --rm humble_base tmux'
+
+alias kompare_cfg='kompare /home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE/sundae/config/sf_config_v3.yaml'
 
 eval "$(starship init bash)"
 

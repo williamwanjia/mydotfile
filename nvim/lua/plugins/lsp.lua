@@ -1,48 +1,47 @@
-
 -- mini version
 return {
 
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup()
-    end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "pylsp" }
-      })
-    end
-  },
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require("lspconfig")
-      -- lspconfig.pyright.setup({capabilities = capabilities})
-      lspconfig.lua_ls.setup({capabilities = capabilities})
-      lspconfig.pylsp.setup({capabilities = capabilities})
+    {
+        "williamboman/mason.nvim",
+        lazy = false,
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "lua_ls", "pyright", "pylsp" },
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        config = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local lspconfig = require("lspconfig")
+            lspconfig.pyright.setup({ capabilities = capabilities })
+            lspconfig.lua_ls.setup({ capabilities = capabilities })
+            lspconfig.pylsp.setup({ capabilities = capabilities })
 
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition"})
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-    end
-  },
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+        end,
+    },
 
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    opts = {},
-    config = function(_, opts) require'lsp_signature'.setup(opts) end
-  },
-
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts)
+            require("lsp_signature").setup(opts)
+        end,
+    },
 }
-
 
 -- Copied somewhere onine, not fully understand yet
 -- return {

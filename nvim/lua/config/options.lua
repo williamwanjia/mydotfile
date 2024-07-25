@@ -74,13 +74,14 @@ opt.list = true -- show space and tabs chars
 opt.listchars = { tab = "▸·", eol = "⏎", trail = "×" } -- make tab, etc visible
 
 -- setting for column wide
-opt.colorcolumn = "80"
+opt.colorcolumn = "89"
 
-opt.textwidth = 79
+opt.textwidth = 88
 
 opt.spelllang = "en_us"
 
 opt.foldmethod = "indent"
+opt.foldlevelstart = 99
 
 --opt.formatoptions = "jcroqlnta"
 
@@ -98,13 +99,13 @@ vim.g.updatetime = 400
 local _border = "single"
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = _border,
+	border = _border,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = _border,
+	border = _border,
 })
 
 vim.diagnostic.config({
-  float = { border = _border },
+	float = { border = _border },
 })
