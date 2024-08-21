@@ -28,29 +28,31 @@ return {
         },
         opts = {
             plugins = { spelling = true },
-            defaults = {
-                mode = { "n", "v" },
-                ["g"] = { name = "+goto" },
-                ["gs"] = { name = "+surround" },
-                ["]"] = { name = "+next" },
-                ["["] = { name = "+prev" },
-                ["<leader><tab>"] = { name = "+tabs" },
-                ["<leader>b"] = { name = "+buffer" },
-                ["<leader>c"] = { name = "+code" },
-                ["<leader>f"] = { name = "+file/find" },
-                ["<leader>g"] = { name = "+git" },
-                ["<leader>gh"] = { name = "+hunks" },
-                ["<leader>q"] = { name = "+quit/session" },
-                ["<leader>s"] = { name = "+search" },
-                ["<leader>u"] = { name = "+ui" },
-                ["<leader>w"] = { name = "+windows" },
-                ["<leader>x"] = { name = "+diagnostics/quickfix" },
+            spec = {
+                {
+                    mode = { "n", "v" },
+                    { "<leader><tab>", group = "tabs" },
+                    { "<leader>b",     group = "buffer" },
+                    { "<leader>c",     group = "code" },
+                    { "<leader>f",     group = "file/find" },
+                    { "<leader>g",     group = "git" },
+                    { "<leader>gh",    group = "hunks" },
+                    { "<leader>q",     group = "quit/session" },
+                    { "<leader>s",     group = "search" },
+                    { "<leader>u",     group = "ui" },
+                    { "<leader>w",     group = "windows" },
+                    { "<leader>x",     group = "diagnostics/quickfix" },
+                    { "[",             group = "prev" },
+                    { "]",             group = "next" },
+                    { "g",             group = "goto" },
+                    { "gs",            group = "surround" },
+                },
             },
         },
         config = function(_, opts)
             local wk = require("which-key")
             wk.setup(opts)
-            wk.register(opts.defaults)
+            -- wk.register(opts.defaults)
         end,
     },
 
@@ -173,5 +175,41 @@ return {
     {
         "echasnovski/mini.pairs",
         config = true
-    }
+    },
+    {
+        'echasnovski/mini.surround',
+        version = '*',
+        config = true,
+    },
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         lsp = {
+    --             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    --             override = {
+    --                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+    --                 ["vim.lsp.util.stylize_markdown"] = true,
+    --                 ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    --             },
+    --         },
+    --         -- you can enable a preset for easier configuration
+    --         presets = {
+    --             bottom_search = true,         -- use a classic bottom cmdline for search
+    --             command_palette = true,       -- position the cmdline and popupmenu together
+    --             long_message_to_split = true, -- long messages will be sent to a split
+    --             inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    --             lsp_doc_border = false,       -- add a border to hover docs and signature help
+    --         },
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         "rcarriga/nvim-notify",
+    --     },
+    --     config = true,
+    -- },
 }
