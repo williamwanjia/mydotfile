@@ -30,6 +30,9 @@ map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent =
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
+-- map({ "n", "x" }, "C-e", "10k", { desc = "Move 10 lines up" })
+-- map({ "n", "x" }, "C-d", "10j", { desc = "Move 10 lines down" })
+
 -- diagnostic
 local diagnostic_goto = function(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
