@@ -284,3 +284,4 @@ alias kompare_cfg='kompare /home/jiawan/Documents/02_FlandersMake/01_Project/91_
 
 eval "$(starship init bash)"
 
+source /home/jiawan/Repos/ardupilot/Tools/completion/completion.bash

@@ -119,6 +119,7 @@ keys = [
             Key([], "g", lazy.spawn("google-chrome"), desc="Launch Chrome"),
             Key([], "l", lazy.spawn("lock.sh"), desc="Lock screen"),
             Key([], "v", lazy.spawn("kitty alsamixer"), desc="Launch alsamixer"),
+            Key([], "j", lazy.next_screen(), desc="Switch to next screen"),
         ],
     ),
 ]

@@ -4,7 +4,7 @@ xcompmgr &
 
 # picom &
 
-conky --pause=5 -c /home/jiawan/.config/conky/JConky &
+~/bin/conky --pause=5 -c /home/jiawan/.config/conky/JConky &
 
 guake &
 
