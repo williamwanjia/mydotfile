@@ -7,14 +7,14 @@ local map = vim.keymap.set
 map("n", "gn", "<cmd>bnext<cr>")
 map("n", "gp", "<cmd>bprevious<cr>")
 
-map("n", "<F8>", ":TagbarToggle<CR>")
+map("n", "<leader>ta", ":TagbarToggle<CR>")
 
-map("n", "<F4>", ":set spell<CR>")
-map("n", "<F5>", ":set nospell<CR>")
+map("n", "<leader>s", ":set spell<CR>")
+map("n", "<leader>ns", ":set nospell<CR>")
 
-map("n", "<space>ls", ":set textwidth=72<CR> :set colorcolumn=73<CR>")
-map("n", "<space>ll", ":set textwidth=88<CR> :set colorcolumn=89<CR>")
-map("n", "<space>li", ":set textwidth=120<CR> :set colorcolumn=121<CR>")
+map("n", "<leader>ls", ":set textwidth=72<CR> :set colorcolumn=73<CR>")
+map("n", "<leader>ll", ":set textwidth=88<CR> :set colorcolumn=89<CR>")
+map("n", "<leader>li", ":set textwidth=120<CR> :set colorcolumn=121<CR>")
 
 -- buffers
 -- seems the next and previous are reversed in my cfg, not sure why
