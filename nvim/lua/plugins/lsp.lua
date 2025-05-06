@@ -24,7 +24,18 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.pyright.setup({ capabilities = capabilities })
             lspconfig.lua_ls.setup({ capabilities = capabilities })
-            lspconfig.pylsp.setup({ capabilities = capabilities })
+            lspconfig.pylsp.setup({
+                capabilities = capabilities,
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                maxLineLength = 90,
+                            },
+                        },
+                    },
+                },
+            })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
