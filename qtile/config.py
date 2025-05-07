@@ -319,6 +319,7 @@ floating_layout = layout.Floating(
         Match(wm_class="guake"),  #
         Match(wm_class="dev_gui.py"),  #
         Match(wm_class="dev_gui"),  #
+        Match(wm_class="matplotlib"),  #
     ]
 )
 auto_fullscreen = True
