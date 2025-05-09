@@ -263,8 +263,8 @@ screens = [
                 ),
                 #  left_arrow(colors[0], colors[5]),
                 widget.CapsNumLockIndicator(**powerline),
-                #  try bluetooth
-                widget.Bluetooth(**powerline),
+                #  bluetooth
+                widget.Bluetooth(default_show_battery=True, **powerline),
                 #  left_arrow(colors[5], colors[0]),
                 widget.TextBox(
                     text="", font="FontAwesome", background=colors[5], **powerline
