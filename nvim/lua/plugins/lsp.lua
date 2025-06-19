@@ -13,8 +13,13 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = { "lua_ls", "pyright", "pylsp" },
+                -- automatic_installation = false,
+                automatic_enable = false,
             })
         end,
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
     },
     {
         "neovim/nvim-lspconfig",
@@ -24,18 +29,18 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.pyright.setup({ capabilities = capabilities })
             lspconfig.lua_ls.setup({ capabilities = capabilities })
-            lspconfig.pylsp.setup({
-                capabilities = capabilities,
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            pycodestyle = {
-                                maxLineLength = 90,
-                            },
-                        },
-                    },
-                },
-            })
+            -- lspconfig.pylsp.setup({
+            --     capabilities = capabilities,
+            --     settings = {
+            --         pylsp = {
+            --             plugins = {
+            --                 pycodestyle = {
+            --                     maxLineLength = 90,
+            --                 },
+            --             },
+            --         },
+            --     },
+            -- })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
@@ -52,6 +57,22 @@ return {
             require("lsp_signature").setup(opts)
         end,
     },
+    {
+        "nvimtools/none-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "nvim-lua/plenary.nvim",
+            "nvimtools/none-ls-extras.nvim",
+        },
+        config = function()
+            local null_ls = require("null-ls")
+
+            null_ls.setup({
+                sources = {
+                    require("none-ls.diagnostics.flake8"),
+                },
+            })
+        end,
+    }
 }
 
 -- Copied somewhere onine, not fully understand yet
