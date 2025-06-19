@@ -132,9 +132,14 @@ source /home/jiawan/ros2_ws/install/setup.zsh
 # path for python
 SUNDAEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE
 OASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE/oase_binary/dev/linux-x64/python/3.10
+# SLAMPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/alarmm/SLAMTest2/src/
 
 export PYTHONPATH=$SUNDAEPATH:$OASEPATH:$PYTHONPATH
+# export PYTHONPATH=$SUNDAEPATH:$OASEPATH:$PYTHONPATH:$SLAMPATH
 
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
+
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
 

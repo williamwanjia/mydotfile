@@ -120,6 +120,8 @@ keys = [
             Key([], "l", lazy.spawn("lock.sh"), desc="Lock screen"),
             Key([], "v", lazy.spawn("kitty alsamixer"), desc="Launch alsamixer"),
             Key([], "j", lazy.next_screen(), desc="Switch to next screen"),
+            Key([], "a", lazy.spawn("autorandr -c"), desc="Auto switch display"),
+            Key([], "f", lazy.spawn("kitty spf"), desc="Launch spf"),
         ],
     ),
 ]
@@ -142,7 +144,7 @@ for i in groups:
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
             Key(
-                [mod, "shift"],
+                [mod, "control"],
                 i.name,
                 lazy.window.togroup(i.name),
                 desc="move focused window to group {}".format(i.name),
