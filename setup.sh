@@ -32,7 +32,9 @@ install_nerd_font() {
     if already_done "$step"; then echo "✓ Nerd Fonts already installed"; return; fi
 
     mkdir -p ~/.local/share/fonts
-    wget -qO /tmp/FiraCode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+    wget -qO /tmp/Meslo.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip
+
     unzip -qo /tmp/Meslo.zip -d ~/.local/share/fonts/
     fc-cache -fv > /dev/null
 
@@ -44,7 +46,11 @@ install_oh_my_zsh() {
     local step="ohmyzsh_installed"
     if already_done "$step"; then echo "✓ Oh My Zsh already installed"; return; fi
 
-    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    rm ~/.zshrc
+
+    ln -s ~/mydotfile/zshrc ~/.zshrc
+
     log_done "$step"
     echo "✓ Oh My Zsh installed"
 }
@@ -54,6 +60,9 @@ install_starship() {
     if already_done "$step"; then echo "✓ Starship already installed"; return; fi
 
     curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+    ln -sf ~/mydotfile/starship.toml ~/.config/starship.toml
+
     log_done "$step"
     echo "✓ Starship installed"
 }
@@ -65,6 +74,8 @@ install_kitty() {
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     mkdir -p ~/.local/bin
     ln -sf ~/.local/kitty.app/kitty ~/.local/bin/kitty
+
+    ln -sf ~/mydotfile/kitty ~/.config/kitty/kitty
     log_done "$step"
     echo "✓ Kitty installed"
 }
@@ -73,11 +84,19 @@ install_nvm_and_node() {
     local step="nvm_node_installed"
     if already_done "$step"; then echo "✓ NVM & Node already installed"; return; fi
 
+    wget https://github.com/neovim/neovim/releases/download/v0.11.2/nvim.appimage \
+        -O ~/.local/bin/nvim
+    chmod u+x ~/.local/bin/nvim
+
     # check https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating for 
     # the latest version
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
     nvm install --lts
+
+    ln -sf ~/mydotfile/nvim ~/.config/nvim
 
     log_done "$step"
     echo "✓ NVM and Node.js installed"
@@ -88,6 +107,9 @@ install_spf() {
     if already_done "$step"; then echo "✓ SPF already installed"; return; fi
 
     bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
+    ln -sf ~/mydotfile/superfile ~/.config/superfile
+
     log_done "$step"
     echo "✓ SPF installed"
 }
