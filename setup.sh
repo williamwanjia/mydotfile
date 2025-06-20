@@ -192,6 +192,7 @@ main() {
     install_spf
     install_lazygit
     install_docker
+    install_qtile
 }
 
 main "$@"
