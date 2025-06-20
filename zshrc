@@ -121,7 +121,10 @@ eval "$(starship init zsh)"
 export PATH=$PATH:~/.local/bin
 
 # for autojump
-[[ -s /home/jiawan/.autojump/etc/profile.d/autojump.sh ]] && source /home/jiawan/.autojump/etc/profile.d/autojump.sh
+# this might be to old
+# [[ -s /home/jiawan/.autojump/etc/profile.d/autojump.sh ]] && source /home/jiawan/.autojump/etc/profile.d/autojump.sh
+. /usr/share/autojump/autojump.sh
+
 autoload -U compinit && compinit -u
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

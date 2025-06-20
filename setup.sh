@@ -21,7 +21,7 @@ install_apt_packages() {
 
     sudo apt install -y \
         tmux vim git curl wget axel python3-venv zsh \
-        xcompmgr libiw-dev terminator quake zsh
+        xcompmgr libiw-dev terminator guake zsh autojump
 
     log_done "$step"
     echo "✓ Apt packages installed"

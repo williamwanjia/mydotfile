@@ -12,7 +12,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "pyright", "pylsp" },
+                ensure_installed = { "lua_ls", "pyright", "pylsp", "black", "flake8" },
                 -- automatic_installation = false,
                 automatic_enable = false,
             })
