@@ -164,6 +164,23 @@ install_docker() {
     echo "✓ Docker installed (log out and back in to use without sudo)"
 }
 
+install_qtile() {
+    local step="qtile_installed"
+    if already_done "$step"; then echo "✓ Qtile already installed"; return; fi
+
+    sudo apt install -y xserver-xorg xinit libpangocairo-1.0-0 python3-pip \
+        python3-xcffib python3-cairocffi
+
+    pip3 install -r ~/mydotfile/qtile/requirements.txt
+
+    ln -sf ~/mydotfile/qtile ~/.config/qtile
+
+    sudo cp ~/mydotfile/qtile/qtile.desktop /usr/share/xsessions/qtile.desktop
+
+    log_done "$step"
+    echo "✓ Qtile installed"
+}
+
 main() {
     install_apt_packages
     install_google_chrome
