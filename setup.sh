@@ -73,9 +73,9 @@ install_kitty() {
 
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     mkdir -p ~/.local/bin
-    ln -sf ~/.local/kitty.app/kitty ~/.local/bin/kitty
+    ln -sf ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
-    ln -sf ~/mydotfile/kitty ~/.config/kitty/kitty
+    ln -sf ~/mydotfile/kitty ~/.config/kitty
     log_done "$step"
     echo "✓ Kitty installed"
 }
@@ -84,7 +84,7 @@ install_nvm_and_node() {
     local step="nvm_node_installed"
     if already_done "$step"; then echo "✓ NVM & Node already installed"; return; fi
 
-    wget https://github.com/neovim/neovim/releases/download/v0.11.2/nvim.appimage \
+    wget https://github.com/neovim/neovim/releases/download/v0.11.2/nvim-linux-x86_64.appimage \
         -O ~/.local/bin/nvim
     chmod u+x ~/.local/bin/nvim
 
