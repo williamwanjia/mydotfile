@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+CURRENT_DIR="$(pwd)"
+
+
 LOG_FILE="$HOME/.sys_install_log.sh"
 touch "$LOG_FILE"
 
@@ -11,6 +14,23 @@ log_done() {
 already_done() {
     grep -Fxq "$1" "$LOG_FILE"
 }
+
+safe_link() {
+    local src=$1
+    local dest=$2
+
+    if [[ -L $dest ]]; then
+        echo "Symlink $dest exists. Replacing..."
+        rm "$dest"
+    elif [[ -e $dest ]]; then
+        echo "File or directory $dest exists. Backing up to $dest.bak"
+        mv "$dest" "$dest.bak"
+    fi
+
+    ln -sf "$src" "$dest"
+    echo "Linked $dest → $src"
+}
+
 
 install_apt_packages() {
     local step="apt_packages_installed"
@@ -49,7 +69,7 @@ install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     rm ~/.zshrc
 
-    ln -s ~/mydotfile/zshrc ~/.zshrc
+    safe_link ~/mydotfile/zshrc ~/.zshrc
 
     log_done "$step"
     echo "✓ Oh My Zsh installed"
@@ -61,7 +81,7 @@ install_starship() {
 
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
-    ln -sf ~/mydotfile/starship.toml ~/.config/starship.toml
+    safe_link ~/mydotfile/starship.toml ~/.config/starship.toml
 
     log_done "$step"
     echo "✓ Starship installed"
@@ -73,9 +93,9 @@ install_kitty() {
 
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     mkdir -p ~/.local/bin
-    ln -sf ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
+    safe_link ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
-    ln -sf ~/mydotfile/kitty ~/.config/kitty
+    safe_link ~/mydotfile/kitty ~/.config/kitty
     log_done "$step"
     echo "✓ Kitty installed"
 }
@@ -96,7 +116,7 @@ install_nvm_and_node() {
 
     nvm install --lts
 
-    ln -sf ~/mydotfile/nvim ~/.config/nvim
+    safe_link ~/mydotfile/nvim ~/.config/nvim
 
     log_done "$step"
     echo "✓ NVM and Node.js installed"
@@ -108,7 +128,7 @@ install_spf() {
 
     bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
 
-    ln -sf ~/mydotfile/superfile ~/.config/superfile
+    safe_link ~/mydotfile/superfile ~/.config/superfile
 
     log_done "$step"
     echo "✓ SPF installed"
@@ -173,12 +193,89 @@ install_qtile() {
 
     pip3 install -r ~/mydotfile/qtile/requirements.txt
 
-    ln -sf ~/mydotfile/qtile ~/.config/qtile
+    safe_link ~/mydotfile/qtile ~/.config/qtile
 
     sudo cp ~/mydotfile/qtile/qtile.desktop /usr/share/xsessions/qtile.desktop
 
     log_done "$step"
     echo "✓ Qtile installed"
+}
+
+install_rofi() {
+    local step="rofi_installed"
+    if already_done "$step"; then echo "✓ Rofi already installed"; return; fi
+
+    sudo apt install -y \
+        meson make ninja-build pkg-config flex bison check \
+        libglib2.0-dev libpango1.0-dev libcairo2-dev \
+        libxkbcommon-dev libxkbcommon-x11-0 \
+        libxcb1-dev libxcb-xkb-dev libxcb-randr0-dev \
+        libxcb-xinerama0-dev libxcb-util0-dev libxcb-ewmh-dev \
+        libxcb-icccm4-dev libxcb-cursor-dev libgdk-pixbuf-2.0-dev \
+        libstartup-notification0-dev libxcb-imdkit-dev \
+        libglib2.0-dev libxkbcommon-x11-dev
+        # libgmodule-2.0-dev libgio-unix-2.0-dev those two not found
+        #
+    wget -O /tmp/rofi.tar.gz \
+        https://github.com/davatorium/rofi/releases/download/1.7.9.1/rofi-1.7.9.1.tar.gz
+
+    cd /tmp
+    tar -xf rofi.tar.gz
+    cd rofi-1.7.9.1
+
+    meson setup build
+    sudo ninja -C build install
+
+    cd /tmp
+    rm -rf rofi-*
+
+    cd "$CURRENT_DIR"
+
+    log_done "$step"
+    echo "✓ Rofi installed"
+}
+
+install_ros2() {
+    local step="ros2_installed"
+    if already_done "$step"; then echo "✓ ROS2 already installed"; return; fi
+
+    sudo apt install -y \
+        software-properties-common \
+        curl gnupg2 lsb-release
+
+    sudo add-apt-repository universe
+    sudo apt update
+
+    sudo apt update && sudo apt install curl -y
+    export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
+    curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo $VERSION_CODENAME)_all.deb" # If using Ubuntu derivates use $UBUNTU_CODENAME
+    sudo apt install /tmp/ros2-apt-source.deb
+
+    sudo apt update
+    sudo apt upgrade -y
+
+    sudo apt install -y ros-humble-desktop \
+        python3-rosdep \
+        ros-humble-rosbag2-storage-mcap \
+        ros-humble-rmw-cyclonedds-cpp
+
+    rosdep init || true
+
+    # create workspace for extension
+    mkdir -p $HOME/ros2_ws/src
+    # clone extension package
+    cd $HOME/ros2_ws/src
+    git clone git@github.com:tier4/ros2bag_extensions.git
+    # build workspace
+    cd $HOME/ros2_ws
+    source /opt/ros/humble/setup.bash
+    rosdep install --from-paths . --ignore-src --rosdistro=${ROS_DISTRO}
+    colcon build --symlink-install --catkin-skip-building-tests --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release
+
+    cd "$CURRENT_DIR"
+
+    log_done "$step"
+    echo "✓ ROS2 installed"
 }
 
 main() {
@@ -193,6 +290,7 @@ main() {
     install_lazygit
     install_docker
     install_qtile
+    install_rofi
 }
 
 main "$@"
