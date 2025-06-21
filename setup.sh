@@ -297,6 +297,7 @@ main() {
     install_docker
     install_qtile
     install_rofi
+    install_ros2
 }
 
 main "$@"
