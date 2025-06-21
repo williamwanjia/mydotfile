@@ -257,20 +257,25 @@ install_ros2() {
     sudo apt install -y ros-humble-desktop \
         python3-rosdep \
         ros-humble-rosbag2-storage-mcap \
-        ros-humble-rmw-cyclonedds-cpp
+        ros-humble-rmw-cyclonedds-cpp \
+        python3-colcon-common-extensions
 
-    rosdep init || true
+    sudo rosdep init
+    rosdep update
 
     # create workspace for extension
     mkdir -p $HOME/ros2_ws/src
     # clone extension package
     cd $HOME/ros2_ws/src
     git clone git@github.com:tier4/ros2bag_extensions.git
+
     # build workspace
     cd $HOME/ros2_ws
+
     source /opt/ros/humble/setup.bash
-    rosdep install --from-paths . --ignore-src --rosdistro=${ROS_DISTRO}
-    colcon build --symlink-install --catkin-skip-building-tests --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release
+    rosdep install --from-paths . --ignore-src --rosdistro=humble
+    colcon build --symlink-install --catkin-skip-building-tests --cmake-args \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release
 
     cd "$CURRENT_DIR"
 
