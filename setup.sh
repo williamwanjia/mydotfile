@@ -42,10 +42,22 @@ install_apt_packages() {
 
     sudo apt install -y \
         tmux vim git curl wget axel python3-venv zsh \
-        xcompmgr libiw-dev terminator guake zsh autojump
+        xcompmgr libiw-dev terminator guake zsh autojump \
+        fcitx5 fcitx5-config-qt fcitx5-frontend-qt5 fcitx5-chinese-addons \
+        kde-config-fcitx5 blueman
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+
+    wget -q -O /tmp/bat.deb \
+        https://github.com/sharkdp/bat/releases/download/v0.25.0/bat_0.25.0_amd64.deb
+
+    sudo dpkg -i /tmp/bat.deb
+    rm /tmp/bat.deb
 
     log_done "$step"
     echo "✓ Apt packages installed"
+
 }
 
 install_nerd_font() {
