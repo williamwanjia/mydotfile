@@ -44,7 +44,7 @@ install_apt_packages() {
         tmux vim git curl wget axel python3-venv zsh \
         xcompmgr libiw-dev terminator guake zsh autojump \
         fcitx5 fcitx5-config-qt fcitx5-frontend-qt5 fcitx5-chinese-addons \
-        kde-config-fcitx5 blueman
+        kde-config-fcitx5 blueman libfuse2 ffmpeg
 
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
@@ -130,6 +130,15 @@ install_nvm_and_node() {
     nvm install --lts
 
     safe_link ~/mydotfile/nvim ~/.config/nvim
+
+    # ctags
+    git clone https://github.com/universal-ctags/ctags.git
+    cd ctags
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+    rm -rf ctags
 
     log_done "$step"
     echo "✓ NVM and Node.js installed"
