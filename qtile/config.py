@@ -223,7 +223,7 @@ wifi_icon = ""
 
 screens = [
     Screen(
-        wallpaper="~/Documents/mydotfile/i3wm/background/eve/eve1.jpg",
+        wallpaper="~/mydotfile/i3wm/background/eve/eve1.jpg",
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(custom_icon_paths=icon_path, scale=0.7),

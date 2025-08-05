@@ -41,6 +41,10 @@ return {
             --         },
             --     },
             -- })
+            -- require("lspconfig").esbonio.setup({
+            --     -- on_attach = on_attach,       -- your existing LSP on_attach
+            --     capabilities = capabilities, -- from cmp_nvim_lsp if using completion
+            -- })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
@@ -72,7 +76,42 @@ return {
                 },
             })
         end,
+    },
+    {
+        "stevearc/aerial.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("aerial").setup({
+                layout = {
+                    default_direction = "right", -- opens on the right side
+                    min_width = 30,
+                    max_width = 40,
+                },
+                attach_mode = "window",                         -- reopen on window change
+                backends = { "lsp", "treesitter", "markdown" }, -- which symbol providers to use
+                show_guides = true,
+                highlight_on_hover = true,
+                autojump = false,
+            })
+
+            -- Optional: auto-open Aerial when LSP attaches
+            -- vim.api.nvim_create_autocmd("LspAttach", {
+            --     callback = function(args)
+            --         local bufnr = args.buf
+            --         local client = vim.lsp.get_client_by_id(args.data.client_id)
+            --         require("aerial").on_attach(client, bufnr)
+            --         -- require("aerial").attach(bufnr)
+            --     end,
+            -- })
+        end,
+        keys = {
+            { "<leader>ao", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial Outline" },
+            { "<leader>af", "<cmd>AerialFocus<CR>",   desc = "Focus Aerial" },
+            { "[a",         "<cmd>AerialPrev<CR>",    desc = "Previous symbol" },
+            { "]a",         "<cmd>AerialNext<CR>",    desc = "Next symbol" },
+        },
     }
+
 }
 
 -- Copied somewhere onine, not fully understand yet
