@@ -55,6 +55,8 @@ install_apt_packages() {
     sudo dpkg -i /tmp/bat.deb
     rm /tmp/bat.deb
 
+    safe_link ~/mydotfile/gitconfig ~/.gitconfig
+
     log_done "$step"
     echo "✓ Apt packages installed"
 

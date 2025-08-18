@@ -1,0 +1,7 @@
+[user]
+	email = williamwanjia@gmail.com
+	name = Jia Wan
+[pull]
+	rebase = false
+[core]
+	fileMode = false
