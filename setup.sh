@@ -44,7 +44,8 @@ install_apt_packages() {
         tmux vim git curl wget axel python3-venv zsh \
         xcompmgr libiw-dev terminator guake zsh autojump \
         fcitx5 fcitx5-config-qt fcitx5-frontend-qt5 fcitx5-chinese-addons \
-        kde-config-fcitx5 blueman libfuse2 ffmpeg
+        kde-config-fcitx5 blueman libfuse2 ffmpeg pkg-config autoconf \
+        automake gcc g++ 
 
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
@@ -56,6 +57,8 @@ install_apt_packages() {
     rm /tmp/bat.deb
 
     safe_link ~/mydotfile/gitconfig ~/.gitconfig
+
+    safe_link ~/mydotfile/tmux.conf ~/.tmux.conf
 
     log_done "$step"
     echo "✓ Apt packages installed"
@@ -85,6 +88,17 @@ install_oh_my_zsh() {
     rm ~/.zshrc
 
     safe_link ~/mydotfile/zshrc ~/.zshrc
+
+
+    if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions \
+            "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    fi
+
+    if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+            "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+    fi
 
     log_done "$step"
     echo "✓ Oh My Zsh installed"
@@ -134,13 +148,13 @@ install_nvm_and_node() {
     safe_link ~/mydotfile/nvim ~/.config/nvim
 
     # ctags
-    git clone https://github.com/universal-ctags/ctags.git
-    cd ctags
-    ./autogen.sh
-    ./configure
-    make
-    sudo make install
-    rm -rf ctags
+    # git clone https://github.com/universal-ctags/ctags.git
+    # cd ctags
+    # ./autogen.sh
+    # ./configure
+    # make
+    # sudo make install
+    # rm -rf ctags
 
     log_done "$step"
     echo "✓ NVM and Node.js installed"

@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,7 +122,7 @@ export PATH=$PATH:~/.local/bin
 
 # for autojump
 # this might be to old
-# [[ -s /home/jiawan/.autojump/etc/profile.d/autojump.sh ]] && source /home/jiawan/.autojump/etc/profile.d/autojump.sh
+# [[ -s /home/jia.wan/.autojump/etc/profile.d/autojump.sh ]] && source /home/jia.wan/.autojump/etc/profile.d/autojump.sh
 . /usr/share/autojump/autojump.sh
 
 autoload -U compinit && compinit -u
@@ -130,12 +130,12 @@ autoload -U compinit && compinit -u
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /opt/ros/humble/setup.zsh
-source /home/jiawan/ros2_ws/install/setup.zsh
+source /home/jia.wan/ros2_ws/install/setup.zsh
 
 # path for python
-SUNDAEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE
-OASEPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE/oase_binary/dev/linux-x64/python/3.10
-# SLAMPATH=/home/jiawan/Documents/02_FlandersMake/01_Project/91_Lib/alarmm/SLAMTest2/src/
+SUNDAEPATH=/home/jia.wan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE
+OASEPATH=/home/jia.wan/Documents/02_FlandersMake/01_Project/91_Lib/drone_lib_ros2/SUNDAE/oase_binary/dev/linux-x64/python/3.10
+# SLAMPATH=/home/jia.wan/Documents/02_FlandersMake/01_Project/91_Lib/alarmm/SLAMTest2/src/
 
 export PYTHONPATH=$SUNDAEPATH:$OASEPATH:$PYTHONPATH
 # export PYTHONPATH=$SUNDAEPATH:$OASEPATH:$PYTHONPATH:$SLAMPATH
@@ -150,3 +150,5 @@ export PATH="$HOME/.fzf/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(zoxide init zsh)"
