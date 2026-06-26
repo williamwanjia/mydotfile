@@ -67,6 +67,11 @@ map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
+-- copy
+map({ "n", "x" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+map({ "n", "x" }, "<leader>Y", [["+Y]], { desc = "Yank to system clipboard" })
+map({ "n", "x" }, "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
+
 
 --
 -- The following key maps are copied fro LazyNvim

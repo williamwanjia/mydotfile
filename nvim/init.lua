@@ -1,5 +1,15 @@
 vim.g.mapleader = ","
 
+
+-- Treat .urdf files as XML
+vim.filetype.add({
+    extension = {
+        urdf = "xml",
+        sdf = "xml",
+    },
+})
+
+
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
